@@ -8,8 +8,6 @@ Shader::Shader(const char* vertex_filename, const char* fragment_filename)
 	std::ifstream vertex_input_stream, fragment_input_stream;
 	std::stringstream vertex_string_buffer, fragment_string_buffer;
 
-	
-																				   
 	vertex_input_stream.exceptions(std::ios::failbit | std::ios::badbit);
 	fragment_input_stream.exceptions(std::ios::failbit | std::ios::badbit);
 
@@ -17,7 +15,7 @@ Shader::Shader(const char* vertex_filename, const char* fragment_filename)
 	{
 		vertex_input_stream.open(vertex_filename, std::ios::_Noreplace | std::ios::_Nocreate);
 		fragment_input_stream.open(fragment_filename, std::ios::_Noreplace | std::ios::_Nocreate);
-
+														 
 
 		std::filebuf* vertex_stream_buffer = vertex_input_stream.rdbuf();
 		std::filebuf* fragment_stream_buffer = fragment_input_stream.rdbuf();
@@ -62,28 +60,53 @@ void Shader::Use()
 
 void Shader::SetUniform(const char* uniform_name, int value)
 {
+	GLint location = this->GetUniform(uniform_name);
+	if(location != -1)
+		glUniform1i(location, value);
 }
 
 void Shader::SetUniform(const char* uniform_name, float value)
 {
+	GLint location = this->GetUniform(uniform_name);
+	if (location != -1)
+		glUniform1f(location, value);
 }
 
 void Shader::SetUniform(const char* uniform_name, glm::vec2& const value)
 {
+	GLint location = this->GetUniform(uniform_name);
+	if (location != -1)
+		glUniform2f(location, value.x, value.y);
 }
 
 void Shader::SetUniform(const char* uniform_name, glm::vec3& const value)
 {
+	GLint location = this->GetUniform(uniform_name);
+	if (location != -1)
+		glUniform3f(location, value.x, value.y, value.z);
 }
 
 void Shader::SetUniform(const char* uniform_name, glm::vec4& const value)
 {
+	GLint location = this->GetUniform(uniform_name);
+	if (location != -1)
+		glUniform4f(location, value.x, value.y, value.z, value.w);
 }
 
-GLuint Shader::GetUniform(const char* uniform_name)
+GLint Shader::GetUniform(const char* uniform_name)
 {
-
-	return GLuint();
+	std::string name(uniform_name);
+	std::map<std::string, GLint>::iterator it = this->m_uniform_location.find(name);
+	
+	if (it == this->m_uniform_location.end())
+	{
+		GLint index = glGetUniformLocation(this->program_shader_handle, uniform_name);
+		if (index != -1)
+			this->m_uniform_location[name] = glGetUniformLocation(this->program_shader_handle, uniform_name);
+		return index;
+	}
+	else
+		return it->second;
 }
 
 bool Shader::COMPILE_SHADER()

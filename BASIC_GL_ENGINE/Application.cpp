@@ -19,9 +19,9 @@ int main(int argc, char* argv[])
 
 
 	std::vector<Vertex> vertices{
-			Vertex(Vector3f(0.0f, 0.5f, 0.0), Vector3f(1.0f, 0.5f, 0.0f)),
-			Vertex(Vector3f(0.5f, -0.5f, 0.0), Vector3f(.5f, 0.6f, 0.0f)),
-			Vertex(Vector3f(-0.5f, -0.5f, 0.0), Vector3f(.3f, 0.5f, 0.0f)),
+			Vertex(Vector3f(0.0f, 0.5f, 0.0), Vector3f(1.0f, 0.0f, 0.0f)),
+			Vertex(Vector3f(0.5f, -0.5f, 0.0), Vector3f(.0f, 1.0f, 0.0f)),
+			Vertex(Vector3f(-0.5f, -0.5f, 0.0), Vector3f(.0f, 0.0f, 1.0f)),
 	};
 
 	Triangle mesh(vertices);
@@ -32,8 +32,13 @@ int main(int argc, char* argv[])
 
 		shader.Use();
 
+		auto variation = glm::vec3(std::sin(glfwGetTime()), std::cos(glfwGetTime()), 1);
+		auto offset = glm::vec3(std::sin(glfwGetTime()) / 2, std::cos(glfwGetTime()) / 2, 1);
+		
+		shader.SetUniform("variable_color", variation);
+		shader.SetUniform("position_offset", offset);
+																	 
 		mesh.Draw();
-
 
 		display.Update();
 	}
