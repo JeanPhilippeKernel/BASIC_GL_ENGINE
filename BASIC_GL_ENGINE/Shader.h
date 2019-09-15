@@ -25,7 +25,6 @@
 	if((X) == false) { std::cerr << "shader validation failed..." << std::endl; exit(EXIT_FAILURE); }	\
 	
 
-
 class Shader
 {
 public:

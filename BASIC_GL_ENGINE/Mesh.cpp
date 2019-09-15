@@ -14,6 +14,10 @@ Mesh::Mesh(std::vector<Vertex>& const vertices)
 			m_raw_vertices.push_back(vertex.GetColor().x); 
 			m_raw_vertices.push_back(vertex.GetColor().y);
 			m_raw_vertices.push_back(vertex.GetColor().z);
+
+			m_raw_vertices.push_back(vertex.GetTexture().x); 
+			m_raw_vertices.push_back(vertex.GetTexture().y);
+			
 		});
 }
 

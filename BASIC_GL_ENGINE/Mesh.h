@@ -21,6 +21,7 @@ public:
 protected:
 	GLuint vertex_array_object;
 	GLuint vertex_buffer_object;
+	GLuint element_buffer_array;
 
 	std::vector<Vertex> m_vertices;
 	std::vector<float> m_raw_vertices;
