@@ -98,7 +98,7 @@ void Shader::SetUniform(const char* uniform_name, glm::mat4& const value)
 {
 	GLint location = this->GetUniform(uniform_name);
 	if(location != -1)
-		glUniformMatrix4fv(location, 1, false, glm::value_ptr(value));
+		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
 }
 
 GLint Shader::GetUniform(const char* uniform_name)

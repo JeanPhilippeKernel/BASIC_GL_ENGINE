@@ -17,6 +17,9 @@ public:
 	void Update();
 	void ClearColor(float r, float g, float b, float a);
 
+	float GetHeight() const;
+	float GetWidth() const;
+
 private:
 	GLFWwindow* m_window;
 	std::string m_title;

@@ -75,6 +75,22 @@ void Display::ClearColor(float r, float g, float b, float a)
 	glClearColor(r, g, b, a);
 }
 
+float Display::GetHeight() const
+{
+	int width, height;
+	glfwGetFramebufferSize(this->m_window, &width, &height);
+
+	return float(height);
+}
+
+float Display::GetWidth() const
+{
+	int width, height;
+	glfwGetFramebufferSize(this->m_window, &width, &height);
+	
+	return float(width);
+}
+
 void Display::INITIALIZE_WINDOW_HINT()
 {
 	if (glfwInit() != GLFW_TRUE)

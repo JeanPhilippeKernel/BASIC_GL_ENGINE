@@ -8,6 +8,7 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Vector3f.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h" />
@@ -17,6 +18,7 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="Vector3f.h" />
+    <ClInclude Include="Rectangle.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader\basic.frag" />

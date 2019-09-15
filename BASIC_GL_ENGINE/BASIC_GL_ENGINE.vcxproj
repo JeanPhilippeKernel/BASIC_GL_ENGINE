@@ -134,6 +134,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Vertex.cpp" />
@@ -143,6 +144,7 @@
     <ClInclude Include="Common.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="Vertex.h" />
