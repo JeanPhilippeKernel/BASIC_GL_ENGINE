@@ -8,6 +8,7 @@
 
 #include <GLEW/glew.h>
 #include <GLM/glm.hpp>
+#include <GLM/gtc/type_ptr.hpp>
 
 #include "Common.h"
 
@@ -39,6 +40,8 @@ public:
 	void SetUniform(const char* uniform_name, glm::vec2& const value);
 	void SetUniform(const char* uniform_name, glm::vec3& const  value);
 	void SetUniform(const char* uniform_name, glm::vec4& const value);
+
+	void SetUniform(const char* uniform_name, glm::mat4& const value);
 
 
 private:
