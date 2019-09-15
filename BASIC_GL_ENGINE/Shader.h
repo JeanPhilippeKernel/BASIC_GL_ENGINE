@@ -40,6 +40,7 @@ public:
 	void SetUniform(const char* uniform_name, glm::vec3& const  value);
 	void SetUniform(const char* uniform_name, glm::vec4& const value);
 
+
 private:
 	GLuint vertex_shader_handle;
 	GLuint fragment_shader_handle;
