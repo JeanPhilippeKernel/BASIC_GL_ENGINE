@@ -49,10 +49,10 @@ private:
 	std::string fragment_shader_source;
 
 
-	std::map<std::string, GLuint> m_uniform_location;
+	std::map<std::string, GLint> m_uniform_location;
 
 
-	GLuint GetUniform(const char* uniform_name);
+	GLint GetUniform(const char* uniform_name);
 
 	bool COMPILE_SHADER();
 	bool LINKING_SHADER();
