@@ -1,7 +1,7 @@
 #include "Mesh.h"
 
 Mesh::Mesh(std::vector<Vertex>& const vertices)
-	:vertex_array_object(0), vertex_buffer_object(0), m_vertices(vertices)
+	:vertex_array_object(0), vertex_buffer_object(0), element_buffer_array(0), m_vertices(vertices)
 {
 
 	std::for_each(m_vertices.begin(), m_vertices.end(),

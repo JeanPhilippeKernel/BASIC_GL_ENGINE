@@ -6,7 +6,7 @@ class Cube : public Mesh
 {
 public:
 	Cube(std::vector<Vertex>& const vertices);
-	~Cube();
+	virtual ~Cube();
 
 
 	void Draw() override;

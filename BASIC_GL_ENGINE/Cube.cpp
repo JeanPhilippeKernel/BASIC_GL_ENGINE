@@ -1,11 +1,14 @@
 #include "Cube.h"
 
-class Cube : public Mesh 
+Cube::Cube(std::vector<Vertex>& const vertices)
+	: Mesh(vertices)
 {
-public: 
-    Cube();
-    ~Cube();
+}
 
-    
+Cube::~Cube()
+{
+}
 
-};
+void Cube::Draw()
+{
+}
