@@ -38,6 +38,7 @@ int main(int argc, char* argv[])
 	Rectangle rectangle_mesh(vertices_2);
 
 
+
 	//model-view-projection matrix
 	glm::mat4 model_matrix, view_matrix, perspective_matrix;
 

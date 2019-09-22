@@ -3,7 +3,7 @@
 #include <vector>
 #include <algorithm>
 
-#include <GLEW/glew.h>
+#include <GL/glew.h>
 
 #include "Vertex.h"
 

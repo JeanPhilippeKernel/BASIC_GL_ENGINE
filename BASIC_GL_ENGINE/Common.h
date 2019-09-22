@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-#include <GLEW/glew.h>
+#include <GL/glew.h>
 
 #define BUFFER_SIZE 2048
 

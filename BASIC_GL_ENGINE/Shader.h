@@ -6,9 +6,9 @@
 
 #include <map>
 
-#include <GLEW/glew.h>
-#include <GLM/glm.hpp>
-#include <GLM/gtc/type_ptr.hpp>
+#include <GL/glew.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "Common.h"
 

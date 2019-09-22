@@ -1,5 +1,5 @@
 #pragma once
-#include <GLM/glm.hpp>
+#include <glm/glm.hpp>
 #include "Vector3f.h"
 #include "Vector2f.h"
 

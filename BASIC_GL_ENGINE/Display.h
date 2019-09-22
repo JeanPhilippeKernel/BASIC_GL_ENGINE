@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include <GLEW/glew.h>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 class Display
