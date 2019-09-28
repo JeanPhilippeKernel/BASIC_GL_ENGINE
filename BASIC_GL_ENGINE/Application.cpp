@@ -23,23 +23,23 @@ int main(int argc, char* argv[])
 	};*/
 
 
-	std::vector<Vertex> vertices{
+	/*std::vector<Vertex> vertices{
 			Vertex(Vector3f(0.0f, 0.5f, 0.0), Vector3f(1.0f, 0.0f, 0.0f), Vector2f(0.0f, 0.0f)),
 			Vertex(Vector3f(0.5f, -0.5f, 0.0), Vector3f(.0f, 1.0f, 0.0f), Vector2f(0.0f, 0.0f)),
 			Vertex(Vector3f(-0.5f, -0.5f, 0.0), Vector3f(.0f, 0.0f, 1.0f), Vector2f(0.0f, 0.0f)),
 	};
 
-	Triangle mesh(vertices);
+	Triangle mesh(vertices);*/
 
 
-	std::vector<Vertex> vertices_2{
+	/*std::vector<Vertex> vertices_2{
 			Vertex(Vector3f(0.5f, 0.5f, 0.0f), Vector3f(.0f, 1.0f, 0.0f), Vector2f(1.0f, 1.0f)),
 			Vertex(Vector3f(0.5f, -0.5f, 0.0f), Vector3f(.0f, 1.0f, 0.0f), Vector2f(1.0f, 0.0f)),
 			Vertex(Vector3f(-0.5f, -0.5f, 0.0f), Vector3f(.0f, 0.0f, 1.0f), Vector2f(0.0f, 0.0f)),
 			Vertex(Vector3f(-0.5f, 0.5f, 0.0f), Vector3f(1.0f, 0.0f, 0.0f), Vector2f(0.0f, 1.0f)),
 	};
 
-	Rectangle rectangle_mesh(vertices_2);
+	Rectangle rectangle_mesh(vertices_2);*/
 
 	
 
