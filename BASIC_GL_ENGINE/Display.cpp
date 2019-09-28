@@ -75,6 +75,16 @@ void Display::ClearColor(float r, float g, float b, float a)
 	glClearColor(r, g, b, a);
 }
 
+void Display::EnableDepth()
+{
+	glEnable(GL_DEPTH_TEST);
+}
+
+void Display::ClearDepth()
+{
+	glClear(GL_DEPTH_BUFFER_BIT);
+}
+
 float Display::GetHeight() const
 {
 	int width, height;

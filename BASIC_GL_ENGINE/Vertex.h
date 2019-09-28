@@ -3,27 +3,6 @@
 #include "Vector3f.h"
 #include "Vector2f.h"
 
-//class Vertex
-//{
-//public:
-//	Vertex(glm::vec3 const position, glm::vec3 const color);
-//	virtual ~Vertex();
-//
-//
-//	const glm::vec3& GetPosition() const;
-//	const glm::vec3& GetColor() const;
-//
-//	void SetPosition(glm::vec3& const position);
-//	void SetColor(glm::vec3& const color);
-//
-//private:
-//	glm::vec3 m_position;
-//	glm::vec3 m_color;
-//
-//};
-
-
-
 
 struct Vertex
 {

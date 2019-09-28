@@ -17,6 +17,9 @@ public:
 	void Update();
 	void ClearColor(float r, float g, float b, float a);
 
+	void EnableDepth();
+	void ClearDepth();
+
 	float GetHeight() const;
 	float GetWidth() const;
 

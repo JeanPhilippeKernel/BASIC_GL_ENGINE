@@ -3,12 +3,36 @@
 Cube::Cube(std::vector<Vertex>& const vertices)
 	: Mesh(vertices)
 {
+	glGenVertexArrays(1, &(this->vertex_array_object));
+	glBindVertexArray(this->vertex_array_object);
+
+	glGenBuffers(1, &(this->vertex_buffer_object));
+	glBindBuffer(GL_ARRAY_BUFFER, this->vertex_buffer_object);
+	glBufferData(GL_ARRAY_BUFFER, this->VerticeByteSize(), this->m_raw_vertices.data(), GL_STATIC_DRAW);
+
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (GLvoid*)0);
+
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+
+
+	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (GLvoid*)(6 * sizeof(float)));
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
 }
 
 Cube::~Cube()
 {
+	glDeleteBuffers(1, &(this->vertex_buffer_object));
+	glDeleteVertexArrays(1, &(this->vertex_array_object));
 }
 
 void Cube::Draw()
 {
+	glBindVertexArray(this->vertex_array_object);
+	glDrawArrays(GL_TRIANGLES, 0, this->m_raw_vertices.size());
+	glBindVertexArray(0);
 }

@@ -11,6 +11,7 @@
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Vector2f.cpp" />
     <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="Texture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h" />
@@ -23,9 +24,14 @@
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Vector2f.h" />
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader\basic.frag" />
     <None Include="shader\basic.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\cubeTexture.jpg" />
+    <Image Include="assets\dcube.png" />
   </ItemGroup>
 </Project>
