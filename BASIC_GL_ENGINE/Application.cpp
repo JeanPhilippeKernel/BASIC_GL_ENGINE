@@ -100,8 +100,15 @@ int main(int argc, char* argv[])
 	//model-view-projection matrix
 	glm::mat4 model_matrix, view_matrix, perspective_matrix;
 
-	model_matrix =  glm::rotate(glm::mat4(1.0f), glm::radians(-45.0f), glm::vec3(1.0f, 1.0f, 0.0f));
-	view_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
+	model_matrix =  glm::rotate(glm::mat4(1.0f), glm::radians(-45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	
+
+	glm::vec3 cam_position = glm::vec3(0.0f, 0.0f, 5.0f);
+	glm::vec3 cam_target = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::vec3 cam_up = glm::vec3(0.0f, 1.0f, 0.0f);
+
+	view_matrix = glm::lookAt(cam_position, cam_target, cam_up);
+
 	
 	perspective_matrix = glm::perspective(glm::radians(45.0f), (display.GetWidth() / display.GetHeight()), 0.1f, 100.0f);
 
@@ -116,7 +123,7 @@ int main(int argc, char* argv[])
 		texture.Bind();
 		texture_two.Bind(1);
 
-		model_matrix = glm::rotate(glm::mat4(1.0f), glm::radians((float)glfwGetTime() * 50.0f), glm::vec3(1.0f, 1.0f, 0.0f));
+		model_matrix = glm::rotate(glm::mat4(1.0f), glm::radians((float)glfwGetTime() * 50.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
 		shader.SetUniform("model_matrix", model_matrix);
 		shader.SetUniform("view_matrix", view_matrix);
