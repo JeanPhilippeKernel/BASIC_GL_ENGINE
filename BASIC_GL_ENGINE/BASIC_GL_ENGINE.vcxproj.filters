@@ -12,6 +12,8 @@
     <ClCompile Include="Vector2f.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Texture2D.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="FreeCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h" />
@@ -25,6 +27,8 @@
     <ClInclude Include="Vector2f.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Texture2D.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="FreeCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader\basic.frag" />

@@ -6,6 +6,7 @@
 #include "Rectangle.h"
 #include "Cube.h"
 #include "Texture2D.h"
+#include "FreeCamera.h"
 
 int main(int argc, char* argv[])
 {
@@ -103,11 +104,8 @@ int main(int argc, char* argv[])
 	model_matrix =  glm::rotate(glm::mat4(1.0f), glm::radians(-45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	
 
-	glm::vec3 cam_position = glm::vec3(0.0f, 0.0f, 5.0f);
-	glm::vec3 cam_target = glm::vec3(0.0f, 0.0f, 0.0f);
-	glm::vec3 cam_up = glm::vec3(0.0f, 1.0f, 0.0f);
-
-	view_matrix = glm::lookAt(cam_position, cam_target, cam_up);
+	FreeCamera freeCamera(glm::vec3(0.0f, 0.0f, 5.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)); 
+	view_matrix = freeCamera.GetViewMatrix();
 
 	
 	perspective_matrix = glm::perspective(glm::radians(45.0f), (display.GetWidth() / display.GetHeight()), 0.1f, 100.0f);
