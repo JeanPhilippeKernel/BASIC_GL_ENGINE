@@ -1,7 +1,8 @@
 #include "OrbitCamera.h"
 
 OrbitCamera::OrbitCamera()
-	:m_radius(0.0f), m_yaw(0.0f), m_pitch(0.0f)
+	:m_radius(0.0f), m_yaw(0.0f), m_pitch(0.0f), 
+	Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f))
 {
 }
 
@@ -42,6 +43,13 @@ float OrbitCamera::GetYaw() const
 float OrbitCamera::GetRadius() const
 {
 	return this->m_radius;
+}
+
+
+
+glm::mat4 OrbitCamera::GetViewMatrix() const
+{
+	return glm::lookAt(this->m_position, this->m_target, this->m_up);
 }
 
 void OrbitCamera::Rotate(float yaw, float pitch)

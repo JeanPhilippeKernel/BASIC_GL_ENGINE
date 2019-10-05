@@ -18,6 +18,9 @@ public:
 	
 	void Rotate(float yaw, float pitch);
 
+	virtual glm::mat4 GetViewMatrix() const override;
+ 
+
 private:
 	float m_yaw;
 	float m_pitch;
