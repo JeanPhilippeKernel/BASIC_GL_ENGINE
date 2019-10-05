@@ -14,6 +14,7 @@
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="FreeCamera.cpp" />
+    <ClCompile Include="OrbitCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h" />
@@ -29,6 +30,7 @@
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="FreeCamera.h" />
+    <ClInclude Include="OrbitCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader\basic.frag" />

@@ -101,6 +101,12 @@ float Display::GetWidth() const
 	return float(width);
 }
 
+GLFWwindow* Display::GetCurrentWindow() const
+{
+	// TODO: insert return statement here
+	return this->m_window;
+}
+
 void Display::INITIALIZE_WINDOW_HINT()
 {
 	if (glfwInit() != GLFW_TRUE)
@@ -108,7 +114,7 @@ void Display::INITIALIZE_WINDOW_HINT()
 		std::cerr << "Something went wrong while initialize glfw library, unable to create window.." << std::endl;
 		exit(EXIT_FAILURE);
 	}
-
+									
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);

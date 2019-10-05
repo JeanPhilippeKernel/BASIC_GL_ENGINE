@@ -9,6 +9,6 @@ public:
 	virtual ~Cube();
 
 
-	void Draw() override; 
+	virtual void Draw() override; 
 
 };

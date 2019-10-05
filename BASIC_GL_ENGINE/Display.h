@@ -23,6 +23,8 @@ public:
 	float GetHeight() const;
 	float GetWidth() const;
 
+	GLFWwindow* GetCurrentWindow() const;
+
 private:
 	GLFWwindow* m_window;
 	std::string m_title;
