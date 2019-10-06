@@ -17,23 +17,26 @@ float defined_yaw = 0.0f;
 float defined_pitch = 0.0f;
 float defined_radius = 10.0f;
 
+static glm::vec2 lastMousePos = glm::vec2(0.0f, 0.0f);
+
 const float MOUSE_SENSITIVITY = 0.25f;
 
 
 inline void MouseInputCallback(GLFWwindow* window, double, double);
+inline void MouseInputScrollCallback(GLFWwindow* window, double, double);
 
 
 int main(int argc, char* argv[])
 {
 	Display display("GL ENGINE", 1000, 800);
 	glfwSetCursorPosCallback(display.GetCurrentWindow(), MouseInputCallback);
-
+	glfwSetScrollCallback(display.GetCurrentWindow(), MouseInputScrollCallback);
 
 	
-	Shader shader("shader\\basic.vert", "shader\\basic.frag");
-	Texture2D texture("assets\\dcube.png");
-	Texture2D texture_two("assets\\cubeTexture.jpg");
-	Texture2D texture_three("assets\\floor.jpg");
+	Shader shader("shader/basic.vert", "shader/basic.frag");
+	Texture2D texture("assets/dcube.png");
+	Texture2D texture_two("assets/cubeTexture.jpg");
+	Texture2D texture_three("assets/floor.jpg");
 
 	/*std::vector<Vertex> vertices{
 			Vertex(glm::vec3(0.0f, 0.5f, 0.0), glm::vec3(1.0f, 0.5f, 0.0f)),
@@ -114,7 +117,7 @@ int main(int argc, char* argv[])
 	};
 
 	Cube cube_mesh(vertices_3);
-	Cube cube_mesh_two(vertices_3);
+	Cube floor(vertices_3);
 
 
 	//model-view-projection matrix
@@ -125,7 +128,7 @@ int main(int argc, char* argv[])
 	
 
 	
-	orbitCamera.SetRadius(defined_radius);
+	//orbitCamera.SetRadius(defined_radius);
 	orbitCamera.SetTarget(glm::vec3(0.0f, 0.0f, 0.0f));
 	view_matrix = orbitCamera.GetViewMatrix();
 
@@ -158,7 +161,7 @@ int main(int argc, char* argv[])
 		texture_three.Bind();
 		texture_three.Bind(1);
 		shader.SetUniform("model_matrix", model_matrix_two);
-		cube_mesh_two.Draw();
+		floor.Draw();
 
 
 		display.Update();
@@ -170,25 +173,30 @@ int main(int argc, char* argv[])
 
 inline void MouseInputCallback(GLFWwindow* window, double cursor_pos_x, double cursor_pos_y)
 {
-	static glm::vec2 lastMousePos =  glm::vec2(0.0f, 0.0f);
-	
 	if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
 	{
 		defined_yaw -= (static_cast<float>(cursor_pos_x) - lastMousePos.x) * MOUSE_SENSITIVITY;
 		defined_pitch += (static_cast<float>(cursor_pos_y) - lastMousePos.y) * MOUSE_SENSITIVITY;
 	}
 
-	if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
+	/*if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS)
 	{
 		float dx = 0.001f * (static_cast<float>(cursor_pos_x) - lastMousePos.x);
 		float dy = 0.001f * (static_cast<float>(cursor_pos_y) - lastMousePos.y);
 
 		defined_radius += (dy - dx);
-	}
+	}*/
 
 	lastMousePos.x = static_cast<float>(cursor_pos_x);
 	lastMousePos.y = static_cast<float>(cursor_pos_y);
 
-	orbitCamera.SetRadius(defined_radius);
 	orbitCamera.Rotate(defined_yaw,  defined_pitch);
+}
+
+inline void MouseInputScrollCallback(GLFWwindow* window, double x, double y)
+{
+	defined_radius += y * MOUSE_SENSITIVITY;
+
+	orbitCamera.SetRadius(defined_radius);
+	orbitCamera.Rotate(defined_yaw, defined_pitch);
 }

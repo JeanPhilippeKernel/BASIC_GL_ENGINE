@@ -1,9 +1,13 @@
 #include "OrbitCamera.h"
 
 OrbitCamera::OrbitCamera()
-	:m_radius(0.0f), m_yaw(0.0f), m_pitch(0.0f), 
-	Camera(glm::vec3(0.0f, 0.0f, 10.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f))
+	:m_radius(10.0f), m_yaw(glm::radians(60.0f)), m_pitch(glm::radians(50.0f)),
+	Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f))
 {
+
+	m_position.x = m_radius * std::cos(m_pitch) * std::sin(m_yaw);
+	m_position.y = m_radius * std::sin(m_pitch);
+	m_position.z = m_radius * std::cos(m_pitch) * std::cos(m_yaw);
 }
 
 OrbitCamera::~OrbitCamera()
