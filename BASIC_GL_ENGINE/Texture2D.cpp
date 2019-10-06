@@ -39,6 +39,7 @@ void Texture2D::Bind(int textureUnit)
 {
 	glActiveTexture(GL_TEXTURE0 + textureUnit);
 	glBindTexture(GL_TEXTURE_2D, this->m_texture_handle);
+	
 }
 
 Texture2D::~Texture2D()

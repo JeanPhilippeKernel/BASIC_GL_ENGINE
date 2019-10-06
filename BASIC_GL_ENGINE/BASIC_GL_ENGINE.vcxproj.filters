@@ -39,5 +39,6 @@
   <ItemGroup>
     <Image Include="assets\cubeTexture.jpg" />
     <Image Include="assets\dcube.png" />
+    <Image Include="assets\floor.jpg" />
   </ItemGroup>
 </Project>

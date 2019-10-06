@@ -33,6 +33,7 @@ int main(int argc, char* argv[])
 	Shader shader("shader\\basic.vert", "shader\\basic.frag");
 	Texture2D texture("assets\\dcube.png");
 	Texture2D texture_two("assets\\cubeTexture.jpg");
+	Texture2D texture_three("assets\\floor.jpg");
 
 	/*std::vector<Vertex> vertices{
 			Vertex(glm::vec3(0.0f, 0.5f, 0.0), glm::vec3(1.0f, 0.5f, 0.0f)),
@@ -113,17 +114,19 @@ int main(int argc, char* argv[])
 	};
 
 	Cube cube_mesh(vertices_3);
+	Cube cube_mesh_two(vertices_3);
 
 
 	//model-view-projection matrix
 	glm::mat4 model_matrix, view_matrix, perspective_matrix;
 														
-	model_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -1.0f));
+	model_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+	glm::mat4 model_matrix_two = glm::scale(glm::mat4(1.0f), glm::vec3(10.0f, 0.01f, 10.f)) * glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -60.0f, 0.0f));
 	
 
 	
 	orbitCamera.SetRadius(defined_radius);
-	orbitCamera.SetTarget(glm::vec3(0.0f, 0.0f, -1.0f));
+	orbitCamera.SetTarget(glm::vec3(0.0f, 0.0f, 0.0f));
 	view_matrix = orbitCamera.GetViewMatrix();
 
 	
@@ -150,6 +153,13 @@ int main(int argc, char* argv[])
 		shader.SetUniform("diffuse_two", 1);
 																	 
 		cube_mesh.Draw();
+
+
+		texture_three.Bind();
+		texture_three.Bind(1);
+		shader.SetUniform("model_matrix", model_matrix_two);
+		cube_mesh_two.Draw();
+
 
 		display.Update();
 	}

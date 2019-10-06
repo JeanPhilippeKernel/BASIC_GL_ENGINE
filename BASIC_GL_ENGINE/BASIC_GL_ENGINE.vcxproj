@@ -171,6 +171,7 @@
   <ItemGroup>
     <Image Include="assets\cubeTexture.jpg" />
     <Image Include="assets\dcube.png" />
+    <Image Include="assets\floor.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
