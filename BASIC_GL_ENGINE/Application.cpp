@@ -170,12 +170,15 @@ inline void MouseInputCallback(GLFWwindow* window, double cursor_pos_x, double c
 
 	if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
 	{
+		float dx = 0.001f * (static_cast<float>(cursor_pos_x) - lastMousePos.x);
+		float dy = 0.001f * (static_cast<float>(cursor_pos_y) - lastMousePos.y);
 
+		defined_radius += (dy - dx);
 	}
 
 	lastMousePos.x = static_cast<float>(cursor_pos_x);
 	lastMousePos.y = static_cast<float>(cursor_pos_y);
 
-
+	orbitCamera.SetRadius(defined_radius);
 	orbitCamera.Rotate(defined_yaw,  defined_pitch);
 }
