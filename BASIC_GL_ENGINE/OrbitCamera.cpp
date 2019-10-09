@@ -7,9 +7,9 @@ OrbitCamera::OrbitCamera()
 
 	m_pitch = glm::clamp(m_pitch, -glm::half_pi<float>() + 0.1f, glm::half_pi<float>() - 0.1f);
 
-	m_position.x = m_radius * std::cos(m_pitch) * std::sin(m_yaw);
-	m_position.y = m_radius * std::sin(m_pitch);
-	m_position.z = m_radius * std::cos(m_pitch) * std::cos(m_yaw);
+	m_position.x = m_target.x + m_radius * std::cos(m_pitch) * std::sin(m_yaw);
+	m_position.y = m_target.y + m_radius * std::sin(m_pitch);
+	m_position.z = m_target.z + m_radius * std::cos(m_pitch) * std::cos(m_yaw);
 }
 
 OrbitCamera::~OrbitCamera()
@@ -66,7 +66,7 @@ void OrbitCamera::Rotate(float yaw, float pitch)
 
 	m_pitch = glm::clamp(m_pitch, -glm::half_pi<float>() + 0.1f, glm::half_pi<float>() - 0.1f);
 
-	m_position.x = (m_radius * std::cos(m_pitch) * std::sin(m_yaw));
-	m_position.y = (m_radius * std::sin(m_pitch));
-	m_position.z = (m_radius * std::cos(m_pitch) * std::cos(m_yaw));
+	m_position.x = m_target.x + (m_radius * std::cos(m_pitch) * std::sin(m_yaw));
+	m_position.y = m_target.y + (m_radius * std::sin(m_pitch));
+	m_position.z = m_target.z + (m_radius * std::cos(m_pitch) * std::cos(m_yaw));
 }
