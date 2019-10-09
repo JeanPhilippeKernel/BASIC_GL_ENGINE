@@ -1,9 +1,11 @@
 #include "OrbitCamera.h"
 
 OrbitCamera::OrbitCamera()
-	:m_radius(10.0f), m_yaw(glm::radians(60.0f)), m_pitch(glm::radians(50.0f)),
+	:m_radius(20.0f), m_yaw(glm::radians(60.0f)), m_pitch(glm::radians(50.0f)),
 	Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f))
 {
+
+	m_pitch = glm::clamp(m_pitch, -glm::half_pi<float>() + 0.1f, glm::half_pi<float>() - 0.1f);
 
 	m_position.x = m_radius * std::cos(m_pitch) * std::sin(m_yaw);
 	m_position.y = m_radius * std::sin(m_pitch);
@@ -58,12 +60,13 @@ glm::mat4 OrbitCamera::GetViewMatrix() const
 
 void OrbitCamera::Rotate(float yaw, float pitch)
 {
+
 	m_yaw = glm::radians(yaw);
 	m_pitch = glm::radians(pitch);
 
-	m_pitch = glm::clamp(m_pitch, -glm::half_pi<float>() - 0.1f, glm::half_pi<float>() - 0.1f);
+	m_pitch = glm::clamp(m_pitch, -glm::half_pi<float>() + 0.1f, glm::half_pi<float>() - 0.1f);
 
-	m_position.x = (m_radius * std::cos(m_pitch) * std::sin(m_yaw)) + m_target.x;
-	m_position.y = (m_radius * std::sin(m_pitch)) + m_target.y;
-	m_position.z = (m_radius * std::cos(m_pitch) * std::cos(m_yaw)) + m_target.z;
+	m_position.x = (m_radius * std::cos(m_pitch) * std::sin(m_yaw));
+	m_position.y = (m_radius * std::sin(m_pitch));
+	m_position.z = (m_radius * std::cos(m_pitch) * std::cos(m_yaw));
 }

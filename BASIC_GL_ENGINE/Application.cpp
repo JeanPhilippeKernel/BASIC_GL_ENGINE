@@ -179,14 +179,6 @@ inline void MouseInputCallback(GLFWwindow* window, double cursor_pos_x, double c
 		defined_pitch += (static_cast<float>(cursor_pos_y) - lastMousePos.y) * MOUSE_SENSITIVITY;
 	}
 
-	/*if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS)
-	{
-		float dx = 0.001f * (static_cast<float>(cursor_pos_x) - lastMousePos.x);
-		float dy = 0.001f * (static_cast<float>(cursor_pos_y) - lastMousePos.y);
-
-		defined_radius += (dy - dx);
-	}*/
-
 	lastMousePos.x = static_cast<float>(cursor_pos_x);
 	lastMousePos.y = static_cast<float>(cursor_pos_y);
 
@@ -195,8 +187,9 @@ inline void MouseInputCallback(GLFWwindow* window, double cursor_pos_x, double c
 
 inline void MouseInputScrollCallback(GLFWwindow* window, double x, double y)
 {
-	defined_radius += y * MOUSE_SENSITIVITY;
+	auto radius = orbitCamera.GetRadius(); 
+	radius += y * MOUSE_SENSITIVITY;
 
-	orbitCamera.SetRadius(defined_radius);
+	orbitCamera.SetRadius(radius);
 	orbitCamera.Rotate(defined_yaw, defined_pitch);
 }
