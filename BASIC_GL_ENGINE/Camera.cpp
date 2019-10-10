@@ -4,29 +4,33 @@ Camera::Camera()
 	:m_position(glm::vec3(0.0f, 0.0f, 0.0f)), m_target(glm::vec3(0.0f, 0.0f, 0.0f)), m_up(glm::vec3(0.0f, 1.0f, 0.0f)),
 	m_pitch(0.0f), m_yaw(0.0f), m_radius(10.0f)
 {
-	this->__defaultRotate(m_yaw, m_pitch);
+	this->__defaultRotate();
 }
 
 Camera::Camera(glm::vec3 position, glm::vec3 target, glm::vec3 up)
 	:m_position(position), m_target(target), m_up(up),
 	m_yaw(0.0f), m_pitch(0.0f),m_radius(10.0f)
 {
-	this->__defaultRotate(m_yaw, m_pitch);
+	this->__defaultRotate();
 }
 
 Camera::Camera(glm::vec3 position, glm::vec3 target, glm::vec3 up, float pitch, float yaw)
 	:m_position(position), m_target(target), m_up(up),
-	m_yaw(yaw), m_pitch(pitch), m_radius(10.0f)
+	 m_radius(10.0f), m_yaw(0.0f), m_pitch(0.0f)
 {
-	this->__defaultRotate(m_yaw, m_pitch);
+	this->SetYawAngle(yaw);
+	this->SetPitchAngle(pitch);
+	this->__defaultRotate();
 }
 
 
 Camera::Camera(glm::vec3 position, glm::vec3 target, glm::vec3 up, float radius, float pitch, float yaw)
 	:m_position(position), m_target(target), m_up(up),
-	m_yaw(yaw), m_pitch(pitch), m_radius(radius)
+	m_radius(radius), m_yaw(0.0f), m_pitch(0.0f)
 {
-	this->__defaultRotate(m_yaw, m_pitch);
+	this->SetYawAngle(yaw);
+	this->SetPitchAngle(pitch);
+	this->__defaultRotate();
 }
 
 const glm::vec3& Camera::GetPosition() const 
@@ -69,11 +73,7 @@ void Camera::SetTarget(glm::vec3 target)
 void Camera::SetPitchAngle(float pitch)
 {
 	this->m_pitch = glm::radians(pitch);
-	this->m_pitch = glm::clamp(
-		this->m_pitch,
-		-glm::half_pi<float>() + 0.1f, 
-		glm::half_pi<float>() - 0.1f
-	);
+	this->m_pitch = glm::clamp(this->m_pitch, -glm::half_pi<float>() + 0.1f, glm::half_pi<float>() - 0.1f);
 
 }
 void Camera::SetYawAngle(float yaw)
@@ -87,7 +87,7 @@ void Camera::SetRadius(float radius)
 }
 
 
-void Camera::__defaultRotate(float yaw, float pitch)
+void Camera::__defaultRotate()
 {
 	this->m_position.x = this->m_target.x + (m_radius * std::cos(m_pitch) * std::sin(m_yaw));
 	this->m_position.y = this->m_target.y + (m_radius * std::sin(m_pitch));

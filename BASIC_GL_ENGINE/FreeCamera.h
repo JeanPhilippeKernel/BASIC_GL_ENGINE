@@ -8,7 +8,5 @@ public:
 	FreeCamera(glm::vec3 position, glm::vec3 target, glm::vec3 up);
 	virtual ~FreeCamera() = default;
 
-
-	virtual glm::mat4 GetViewMatrix() const override;
 };
 

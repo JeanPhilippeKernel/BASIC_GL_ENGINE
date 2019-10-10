@@ -123,12 +123,7 @@ int main(int argc, char* argv[])
 	glm::mat4 model_matrix_two = glm::scale(glm::mat4(1.0f), glm::vec3(10.0f, 0.01f, 10.f)) * glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -60.0f, 0.0f));
 	
 
-	
-	//orbitCamera.SetRadius(defined_radius);
-	//orbitCamera.SetTarget(glm::vec3(0.0f, 0.0f, 0.0f));
 	view_matrix = orbitCamera.GetViewMatrix();
-
-	
 	perspective_matrix = glm::perspective(glm::radians(45.0f), (display.GetWidth() / display.GetHeight()), 0.1f, 100.0f);
 
 
@@ -169,8 +164,8 @@ int main(int argc, char* argv[])
 
 inline void MouseInputCallback(GLFWwindow* window, double cursor_pos_x, double cursor_pos_y)
 {
-	float current_yaw = orbitCamera.GetYawAngle();
-	float current_pitch = orbitCamera.GetPitchAngle();
+	float current_yaw = glm::degrees(orbitCamera.GetYawAngle());
+	float current_pitch = glm::degrees(orbitCamera.GetPitchAngle());
 
 	if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
 	{
@@ -181,7 +176,9 @@ inline void MouseInputCallback(GLFWwindow* window, double cursor_pos_x, double c
 	lastMousePos.x = static_cast<float>(cursor_pos_x);
 	lastMousePos.y = static_cast<float>(cursor_pos_y);
 
-	orbitCamera.Rotate(current_yaw,  current_pitch);
+	orbitCamera.SetPitchAngle(current_pitch);
+	orbitCamera.SetYawAngle(current_yaw);
+	orbitCamera.UpdatePosition();
 }
 
 inline void MouseInputScrollCallback(GLFWwindow* window, double x, double y)
@@ -190,8 +187,5 @@ inline void MouseInputScrollCallback(GLFWwindow* window, double x, double y)
 	radius += y * MOUSE_SENSITIVITY;
 
 	orbitCamera.SetRadius(radius);
-
-	float current_yaw = orbitCamera.GetYawAngle();
-	float current_pitch = orbitCamera.GetPitchAngle();
-	orbitCamera.Rotate(current_yaw, current_pitch);
+	orbitCamera.UpdatePosition();
 }

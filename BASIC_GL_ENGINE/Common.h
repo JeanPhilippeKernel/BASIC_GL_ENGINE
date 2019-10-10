@@ -4,7 +4,7 @@
 
 #include <GL/glew.h>
 
-#define BUFFER_SIZE 2048
+constexpr auto BUFFER_SIZE = 2048;
 
 namespace common 
 {

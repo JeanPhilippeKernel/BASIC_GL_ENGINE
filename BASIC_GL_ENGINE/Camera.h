@@ -29,9 +29,7 @@ public:
 	void SetYawAngle(float yaw);
 	void SetRadius(float radius);
 
-	
-
-	virtual void Rotate(float yaw, float pitch) = 0;
+	//virtual void Rotate(float yaw, float pitch) = 0;
 
 	glm::mat4 GetViewMatrix() const;
 
@@ -44,6 +42,6 @@ protected:
 	float m_yaw;
 	float m_radius;
 
-	void __defaultRotate(float yaw, float pitch);
+	void __defaultRotate();
 };
 

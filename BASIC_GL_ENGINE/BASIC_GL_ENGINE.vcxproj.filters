@@ -15,6 +15,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="FreeCamera.cpp" />
     <ClCompile Include="OrbitCamera.cpp" />
+    <ClCompile Include="FPSCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h" />
@@ -31,6 +32,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="FreeCamera.h" />
     <ClInclude Include="OrbitCamera.h" />
+    <ClInclude Include="FPSCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader\basic.frag" />

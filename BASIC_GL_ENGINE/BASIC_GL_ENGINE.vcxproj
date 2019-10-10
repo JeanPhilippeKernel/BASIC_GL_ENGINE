@@ -137,6 +137,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Display.cpp" />
+    <ClCompile Include="FPSCamera.cpp" />
     <ClCompile Include="FreeCamera.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="OrbitCamera.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="Common.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Display.h" />
+    <ClInclude Include="FPSCamera.h" />
     <ClInclude Include="FreeCamera.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="OrbitCamera.h" />
