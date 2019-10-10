@@ -11,11 +11,7 @@
 #include "OrbitCamera.h"
 
 
-OrbitCamera orbitCamera;
-
-float defined_yaw = 0.0f;
-float defined_pitch = 0.0f;
-float defined_radius = 10.0f;
+OrbitCamera orbitCamera(glm::vec3(0, 0, 0), 20.f, 55.f, 60.f);
 
 static glm::vec2 lastMousePos = glm::vec2(0.0f, 0.0f);
 
@@ -129,7 +125,7 @@ int main(int argc, char* argv[])
 
 	
 	//orbitCamera.SetRadius(defined_radius);
-	orbitCamera.SetTarget(glm::vec3(0.0f, 0.0f, 0.0f));
+	//orbitCamera.SetTarget(glm::vec3(0.0f, 0.0f, 0.0f));
 	view_matrix = orbitCamera.GetViewMatrix();
 
 	
@@ -173,16 +169,19 @@ int main(int argc, char* argv[])
 
 inline void MouseInputCallback(GLFWwindow* window, double cursor_pos_x, double cursor_pos_y)
 {
+	float current_yaw = orbitCamera.GetYawAngle();
+	float current_pitch = orbitCamera.GetPitchAngle();
+
 	if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
 	{
-		defined_yaw -= (static_cast<float>(cursor_pos_x) - lastMousePos.x) * MOUSE_SENSITIVITY;
-		defined_pitch += (static_cast<float>(cursor_pos_y) - lastMousePos.y) * MOUSE_SENSITIVITY;
+		current_yaw -= (static_cast<float>(cursor_pos_x) - lastMousePos.x) * MOUSE_SENSITIVITY;
+		current_pitch += (static_cast<float>(cursor_pos_y) - lastMousePos.y) * MOUSE_SENSITIVITY;
 	}
 
 	lastMousePos.x = static_cast<float>(cursor_pos_x);
 	lastMousePos.y = static_cast<float>(cursor_pos_y);
 
-	orbitCamera.Rotate(defined_yaw,  defined_pitch);
+	orbitCamera.Rotate(current_yaw,  current_pitch);
 }
 
 inline void MouseInputScrollCallback(GLFWwindow* window, double x, double y)
@@ -191,5 +190,8 @@ inline void MouseInputScrollCallback(GLFWwindow* window, double x, double y)
 	radius += y * MOUSE_SENSITIVITY;
 
 	orbitCamera.SetRadius(radius);
-	orbitCamera.Rotate(defined_yaw, defined_pitch);
+
+	float current_yaw = orbitCamera.GetYawAngle();
+	float current_pitch = orbitCamera.GetPitchAngle();
+	orbitCamera.Rotate(current_yaw, current_pitch);
 }

@@ -3,27 +3,9 @@
 class OrbitCamera : public Camera
 {
 public:
-	OrbitCamera();
+	OrbitCamera(glm::vec3 target, float radius, float yaw, float pitch);
 	~OrbitCamera();
 
-	void SetYaw(float yaw);
-	void SetPitch(float pitch);
-
-	void SetRadius(float radius);
-	void SetTarget(glm::vec3 target);
-
-	float GetPitch() const;
-	float GetYaw() const;
-	float GetRadius() const;
-	
-	void Rotate(float yaw, float pitch);
-
-	virtual glm::mat4 GetViewMatrix() const override;
- 
-
-private:
-	float m_yaw;
-	float m_pitch;
-	float m_radius;
+	virtual void Rotate(float yaw, float pitch) override;
 };
 
