@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -34,6 +35,8 @@ private:
 
 	void INITIALIZE_WINDOW_HINT();
 	void INITIALIZE_WINDOW();
+
+	void FramePerSecondCounter();
 };
 
 inline void OnFramebufferSizeChanged(GLFWwindow* window, int width, int height);

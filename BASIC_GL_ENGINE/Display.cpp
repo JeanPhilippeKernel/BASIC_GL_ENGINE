@@ -65,6 +65,8 @@ bool Display::IsClosed()
 
 void Display::Update()
 {
+	FramePerSecondCounter();
+	
 	glfwPollEvents();
 	glfwSwapBuffers(this->m_window);
 }
@@ -145,6 +147,36 @@ void Display::INITIALIZE_WINDOW()
 	}
 
 	glewExperimental = true;
+}
+
+void Display::FramePerSecondCounter()
+{
+	static double previousSecond = 0.0f;
+	double currentSecond = glfwGetTime();
+	double elapsedSecond = 0.0f;
+
+	static int frameCounter = 0;
+
+	elapsedSecond = currentSecond - previousSecond;
+	if (elapsedSecond > 1)
+	{
+		previousSecond = currentSecond;
+		double fps = frameCounter / elapsedSecond;
+		double  msPerFrame = 1000.0 / frameCounter;
+
+		std::ostringstream outs;
+		outs.precision(3);	// decimal places
+		outs << std::fixed
+			<< m_title << "    "
+			<< "FPS: " << fps << "    "
+			<< "Frame Time: " << msPerFrame << " (ms)";
+		glfwSetWindowTitle(this->m_window, outs.str().c_str());
+		
+		frameCounter = 0;
+	}
+
+	frameCounter++;
+
 }
 
 inline void OnFramebufferSizeChanged(GLFWwindow* window, int width, int height)
