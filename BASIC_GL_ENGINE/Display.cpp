@@ -151,9 +151,9 @@ void Display::INITIALIZE_WINDOW()
 
 void Display::FramePerSecondCounter()
 {
-	static double previousSecond = 0.0f;
+	static double previousSecond = 0.0;
 	double currentSecond = glfwGetTime();
-	double elapsedSecond = 0.0f;
+	double elapsedSecond = 0.0;
 
 	static int frameCounter = 0;
 
