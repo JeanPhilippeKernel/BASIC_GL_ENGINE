@@ -21,9 +21,8 @@ static glm::vec2 lastMousePos = glm::vec2(0.0f, 0.0f);
 
 const float MOUSE_SENSITIVITY = 0.1f;
 const float MOVE_SPEED = 5.0;
-const float K = 0.08f;
 															 
-inline void Update();
+inline void Update(float deltaTime);
 
 inline void MouseInputCallback(GLFWwindow* window, double, double);
 inline void MouseInputScrollCallback(GLFWwindow* window, double, double);
@@ -137,11 +136,17 @@ int main(int argc, char* argv[])
 	perspective_matrix = glm::perspective(glm::radians(fpsCamera.GetFov()), (display.GetWidth() / display.GetHeight()), 0.1f, 100.0f);
 
 
+	float lastime = 0.0f;
+	float currentTime;
+
+
 	while (!display.IsClosed())
 	{
 		display.ClearColor(0.1f, 0.5f, 0.6f, 1.0f);
 		display.EnableDepth();
 		display.ClearDepth();
+
+		currentTime = (float)glfwGetTime();
 
 		shader.Use();
 		texture.Bind();
@@ -164,7 +169,9 @@ int main(int argc, char* argv[])
 		shader.SetUniform("model_matrix", model_matrix_two);
 		floor.Draw();
 
-		Update();
+		Update((float)(currentTime - lastime));
+		lastime = currentTime;
+
 		display.Update();
 	}
 
@@ -172,7 +179,7 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
-inline void Update()
+inline void Update(float deltaTime)
 {
 	double mouseX, mouseY;
 
@@ -188,21 +195,21 @@ inline void Update()
 
 	// Forward/backward
 	if (glfwGetKey(display.GetCurrentWindow(), GLFW_KEY_W) == GLFW_PRESS)
-		fpsCamera.Move(MOVE_SPEED *display.GetElapsedTime() * K * fpsCamera.GetForward());
+		fpsCamera.Move(MOVE_SPEED *deltaTime *  fpsCamera.GetForward());
 	else if (glfwGetKey(display.GetCurrentWindow(), GLFW_KEY_S) == GLFW_PRESS)
-		fpsCamera.Move(MOVE_SPEED *  display.GetElapsedTime()* K * -fpsCamera.GetForward());
+		fpsCamera.Move(MOVE_SPEED *  deltaTime* -fpsCamera.GetForward());
 
 	// Strafe left/right
 	if (glfwGetKey(display.GetCurrentWindow(), GLFW_KEY_A) == GLFW_PRESS)
-		fpsCamera.Move(MOVE_SPEED *display.GetElapsedTime() * K*  -fpsCamera.GetRigth());
+		fpsCamera.Move(MOVE_SPEED *deltaTime *   -fpsCamera.GetRigth());
 	else if (glfwGetKey(display.GetCurrentWindow(), GLFW_KEY_D) == GLFW_PRESS)
-		fpsCamera.Move(MOVE_SPEED * display.GetElapsedTime() *K* fpsCamera.GetRigth());
+		fpsCamera.Move(MOVE_SPEED * deltaTime* fpsCamera.GetRigth());
 												    
 	// Up/down
 	if (glfwGetKey(display.GetCurrentWindow(), GLFW_KEY_Z) == GLFW_PRESS)
-		fpsCamera.Move(MOVE_SPEED * display.GetElapsedTime()* K* fpsCamera.GetUp());
+		fpsCamera.Move(MOVE_SPEED * deltaTime*  fpsCamera.GetUp());
 	else if (glfwGetKey(display.GetCurrentWindow(), GLFW_KEY_X) == GLFW_PRESS)
-		fpsCamera.Move(MOVE_SPEED * display.GetElapsedTime()*K* -fpsCamera.GetUp());
+		fpsCamera.Move(MOVE_SPEED * deltaTime* -fpsCamera.GetUp());
 }
 
 
