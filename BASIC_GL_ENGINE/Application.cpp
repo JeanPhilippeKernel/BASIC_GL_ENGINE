@@ -24,9 +24,9 @@ const float MOVE_SPEED = 5.0;
 															 
 inline void Update(float deltaTime);
 
-inline void MouseInputCallback(GLFWwindow* window, double, double);
+//inline void MouseInputCallback(GLFWwindow* window, double, double);
 inline void MouseInputScrollCallback(GLFWwindow* window, double, double);
-inline void KeyInputCallback(GLFWwindow* window, int key, int scanCode, int action, int mods);
+//inline void KeyInputCallback(GLFWwindow* window, int key, int scanCode, int action, int mods);
 
 Display display("GL ENGINE", 1000, 800);
 
@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
 
 	//glfwSetCursorPosCallback(display.GetCurrentWindow(), MouseInputCallback);
 	glfwSetScrollCallback(display.GetCurrentWindow(), MouseInputScrollCallback);
-	glfwSetKeyCallback(display.GetCurrentWindow(), KeyInputCallback);
+	//glfwSetKeyCallback(display.GetCurrentWindow(), KeyInputCallback);
 	
 	Shader shader("shader/basic.vert", "shader/basic.frag");
 	Texture2D texture("assets/dcube.png");
@@ -221,24 +221,24 @@ inline void Update(float deltaTime)
 }
 
 
-inline void MouseInputCallback(GLFWwindow* window, double cursor_pos_x, double cursor_pos_y)
-{
-	/*float current_yaw = fpsCamera.GetYawAngle();
-    float current_pitch = fpsCamera.GetPitchAngle();
-
-	if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
-	{
-		current_yaw -= (static_cast<float>(cursor_pos_x) - lastMousePos.x) * MOUSE_SENSITIVITY;
-		current_pitch += (static_cast<float>(cursor_pos_y) - lastMousePos.y) * MOUSE_SENSITIVITY;
-	}
-
-	lastMousePos.x = static_cast<float>(cursor_pos_x);
-	lastMousePos.y = static_cast<float>(cursor_pos_y);
-
-	fpsCamera.Rotate(current_yaw, current_pitch);*/
-	
-
-}
+//inline void MouseInputCallback(GLFWwindow* window, double cursor_pos_x, double cursor_pos_y)
+//{
+//	/*float current_yaw = fpsCamera.GetYawAngle();
+//    float current_pitch = fpsCamera.GetPitchAngle();
+//
+//	if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
+//	{
+//		current_yaw -= (static_cast<float>(cursor_pos_x) - lastMousePos.x) * MOUSE_SENSITIVITY;
+//		current_pitch += (static_cast<float>(cursor_pos_y) - lastMousePos.y) * MOUSE_SENSITIVITY;
+//	}
+//
+//	lastMousePos.x = static_cast<float>(cursor_pos_x);
+//	lastMousePos.y = static_cast<float>(cursor_pos_y);
+//
+//	fpsCamera.Rotate(current_yaw, current_pitch);*/
+//	
+//
+//}
 
 inline void MouseInputScrollCallback(GLFWwindow* window, double x, double y)
 {
@@ -253,7 +253,8 @@ inline void MouseInputScrollCallback(GLFWwindow* window, double x, double y)
 	
 }
 
-inline void KeyInputCallback(GLFWwindow * window, int key, int scanCode, int action, int mods)
-{
-	
-}
+//inline void KeyInputCallback(GLFWwindow * window, int key, int scanCode, int action, int mods)
+//{
+//	
+//}
+//
