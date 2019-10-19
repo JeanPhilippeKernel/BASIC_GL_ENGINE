@@ -1,4 +1,5 @@
 #include "FPSCamera.h"
+#include <iostream>
 
 FPSCamera::FPSCamera(glm::vec3 position, glm::vec3 target, float yaw, float pitch)
 	: Camera(position, target, glm::vec3(0.f, 1.0f, 0.0f), pitch, yaw)

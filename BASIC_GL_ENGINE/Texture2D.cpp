@@ -42,6 +42,12 @@ void Texture2D::Bind(int textureUnit)
 	
 }
 
+void Texture2D::UnBind(int textureUnit)
+{
+	glActiveTexture(GL_TEXTURE0 + textureUnit);
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 Texture2D::~Texture2D()
 {
 	glDeleteTextures(1, &(this->m_texture_handle));

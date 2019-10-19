@@ -13,7 +13,7 @@
 
 
 //OrbitCamera orbitCamera(glm::vec3(3, 5, 2), glm::vec3(0, 0, 0), 55.f, 60.f);
-FPSCamera fpsCamera(glm::vec3(0, 0, -5), glm::vec3(0, 0, 0), glm::pi<float>(), 0);
+FPSCamera fpsCamera(glm::vec3(0, 0, 5), glm::vec3(0, 0, 0), glm::pi<float>(), 0);
 //model-view-projection matrix
 glm::mat4 model_matrix, view_matrix, perspective_matrix;
 
@@ -163,13 +163,21 @@ int main(int argc, char* argv[])
 																	 
 		cube_mesh.Draw();
 
+		texture.UnBind();
+		texture.UnBind(1);
+
 
 		texture_three.Bind();
 		texture_three.Bind(1);
 		shader.SetUniform("model_matrix", model_matrix_two);
 		floor.Draw();
 
-		Update((float)(currentTime - lastime));
+		texture.UnBind();
+		texture.UnBind(1);
+
+		float deltaTime = currentTime - lastime;
+		Update(deltaTime);
+
 		lastime = currentTime;
 
 		display.Update();
