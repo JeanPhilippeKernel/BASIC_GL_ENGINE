@@ -17,7 +17,6 @@ Mesh::Mesh(std::vector<Vertex>& const vertices)
 
 			m_raw_vertices.push_back(vertex.GetTexture().x); 
 			m_raw_vertices.push_back(vertex.GetTexture().y);
-			
 		});
 }
 
