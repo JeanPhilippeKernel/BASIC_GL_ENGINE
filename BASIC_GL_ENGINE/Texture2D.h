@@ -14,6 +14,7 @@ public:
 	~Texture2D();
 
 	void Bind(int textureUnit = 0);
+	void UnBind(int textureUnit = 0);
 	
 private:
 	GLuint m_texture_handle;

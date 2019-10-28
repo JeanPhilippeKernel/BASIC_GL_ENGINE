@@ -9,25 +9,36 @@
 
 #include "FreeCamera.h"
 #include "OrbitCamera.h"
+#include "FPSCamera.h"
 
 
-OrbitCamera orbitCamera(glm::vec3(0, 0, 0), 20.f, 55.f, 60.f);
+//OrbitCamera orbitCamera(glm::vec3(3, 5, 2), glm::vec3(0, 0, 0), 55.f, 60.f);
+FPSCamera fpsCamera(glm::vec3(0, 0, 5), glm::vec3(0, 0, 0), glm::pi<float>(), 0);
+//model-view-projection matrix
+glm::mat4 model_matrix, view_matrix, perspective_matrix;
 
 static glm::vec2 lastMousePos = glm::vec2(0.0f, 0.0f);
 
-const float MOUSE_SENSITIVITY = 0.25f;
+const float MOUSE_SENSITIVITY = 0.1f;
+const float MOVE_SPEED = 5.0;
+															 
+inline void Update(float deltaTime);
 
-
-inline void MouseInputCallback(GLFWwindow* window, double, double);
+//inline void MouseInputCallback(GLFWwindow* window, double, double);
 inline void MouseInputScrollCallback(GLFWwindow* window, double, double);
+//inline void KeyInputCallback(GLFWwindow* window, int key, int scanCode, int action, int mods);
+
+Display display("GL ENGINE", 1000, 800);
 
 
 int main(int argc, char* argv[])
 {
-	Display display("GL ENGINE", 1000, 800);
-	glfwSetCursorPosCallback(display.GetCurrentWindow(), MouseInputCallback);
-	glfwSetScrollCallback(display.GetCurrentWindow(), MouseInputScrollCallback);
+	glfwSetInputMode(display.GetCurrentWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetCursorPos(display.GetCurrentWindow(), display.GetWidth() / 2.0, display.GetHeight() / 2.0);
 
+	//glfwSetCursorPosCallback(display.GetCurrentWindow(), MouseInputCallback);
+	glfwSetScrollCallback(display.GetCurrentWindow(), MouseInputScrollCallback);
+	//glfwSetKeyCallback(display.GetCurrentWindow(), KeyInputCallback);
 	
 	Shader shader("shader/basic.vert", "shader/basic.frag");
 	Texture2D texture("assets/dcube.png");
@@ -59,7 +70,6 @@ int main(int argc, char* argv[])
 
 	Rectangle rectangle_mesh(vertices_2);*/
 
-	
 
 	std::vector<Vertex> vertices_3 {
 			Vertex(Vector3f(-0.5f, -0.5f, -0.5f), Vector3f(.0f, 1.0f, 0.0f), Vector2f(0.0f, 0.0f)),
@@ -116,15 +126,18 @@ int main(int argc, char* argv[])
 	Cube floor(vertices_3);
 
 
-	//model-view-projection matrix
-	glm::mat4 model_matrix, view_matrix, perspective_matrix;
+	
 														
 	model_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
 	glm::mat4 model_matrix_two = glm::scale(glm::mat4(1.0f), glm::vec3(10.0f, 0.01f, 10.f)) * glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -60.0f, 0.0f));
 	
 
-	view_matrix = orbitCamera.GetViewMatrix();
-	perspective_matrix = glm::perspective(glm::radians(45.0f), (display.GetWidth() / display.GetHeight()), 0.1f, 100.0f);
+	view_matrix = fpsCamera.GetViewMatrix();
+	perspective_matrix = glm::perspective(glm::radians(fpsCamera.GetFov()), (display.GetWidth() / display.GetHeight()), 0.1f, 100.0f);
+
+
+	float lastime = 0.0f;
+	float currentTime;
 
 
 	while (!display.IsClosed())
@@ -133,11 +146,13 @@ int main(int argc, char* argv[])
 		display.EnableDepth();
 		display.ClearDepth();
 
+		currentTime = (float)glfwGetTime();
+
 		shader.Use();
 		texture.Bind();
 		texture_two.Bind(1);
 
-		view_matrix = orbitCamera.GetViewMatrix();
+		view_matrix = fpsCamera.GetViewMatrix();
 
 		shader.SetUniform("model_matrix", model_matrix);
 		shader.SetUniform("view_matrix", view_matrix);
@@ -148,12 +163,22 @@ int main(int argc, char* argv[])
 																	 
 		cube_mesh.Draw();
 
+		texture.UnBind();
+		texture.UnBind(1);
+
 
 		texture_three.Bind();
 		texture_three.Bind(1);
 		shader.SetUniform("model_matrix", model_matrix_two);
 		floor.Draw();
 
+		texture.UnBind();
+		texture.UnBind(1);
+
+		float deltaTime = currentTime - lastime;
+		Update(deltaTime);
+
+		lastime = currentTime;
 
 		display.Update();
 	}
@@ -162,30 +187,74 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
-inline void MouseInputCallback(GLFWwindow* window, double cursor_pos_x, double cursor_pos_y)
+inline void Update(float deltaTime)
 {
-	float current_yaw = glm::degrees(orbitCamera.GetYawAngle());
-	float current_pitch = glm::degrees(orbitCamera.GetPitchAngle());
+	double mouseX, mouseY;
 
-	if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
-	{
-		current_yaw -= (static_cast<float>(cursor_pos_x) - lastMousePos.x) * MOUSE_SENSITIVITY;
-		current_pitch += (static_cast<float>(cursor_pos_y) - lastMousePos.y) * MOUSE_SENSITIVITY;
-	}
+	// Get the current mouse cursor position delta
+	glfwGetCursorPos(display.GetCurrentWindow(), &mouseX, &mouseY);
 
-	lastMousePos.x = static_cast<float>(cursor_pos_x);
-	lastMousePos.y = static_cast<float>(cursor_pos_y);
+	// Rotate the camera the difference in mouse distance from the center screen.  Multiply this delta by a speed scaler
+	fpsCamera.Rotate((float)(display.GetWidth() / 2.0 - mouseX) * MOUSE_SENSITIVITY, (float)(display.GetHeight() / 2.0 - mouseY) * MOUSE_SENSITIVITY);
 
-	orbitCamera.SetPitchAngle(current_pitch);
-	orbitCamera.SetYawAngle(current_yaw);
-	orbitCamera.UpdatePosition();
+	// Clamp mouse cursor to center of screen
+	glfwSetCursorPos(display.GetCurrentWindow(), display.GetWidth() / 2.0, display.GetHeight() / 2.0);
+
+
+	// Forward/backward
+	if (glfwGetKey(display.GetCurrentWindow(), GLFW_KEY_W) == GLFW_PRESS)
+		fpsCamera.Move(MOVE_SPEED *deltaTime *  fpsCamera.GetForward());
+	else if (glfwGetKey(display.GetCurrentWindow(), GLFW_KEY_S) == GLFW_PRESS)
+		fpsCamera.Move(MOVE_SPEED *  deltaTime* -fpsCamera.GetForward());
+
+	// Strafe left/right
+	if (glfwGetKey(display.GetCurrentWindow(), GLFW_KEY_A) == GLFW_PRESS)
+		fpsCamera.Move(MOVE_SPEED *deltaTime *   -fpsCamera.GetRigth());
+	else if (glfwGetKey(display.GetCurrentWindow(), GLFW_KEY_D) == GLFW_PRESS)
+		fpsCamera.Move(MOVE_SPEED * deltaTime* fpsCamera.GetRigth());
+												    
+	// Up/down
+	if (glfwGetKey(display.GetCurrentWindow(), GLFW_KEY_Z) == GLFW_PRESS)
+		fpsCamera.Move(MOVE_SPEED * deltaTime*  fpsCamera.GetUp());
+	else if (glfwGetKey(display.GetCurrentWindow(), GLFW_KEY_X) == GLFW_PRESS)
+		fpsCamera.Move(MOVE_SPEED * deltaTime* -fpsCamera.GetUp());
 }
+
+
+//inline void MouseInputCallback(GLFWwindow* window, double cursor_pos_x, double cursor_pos_y)
+//{
+//	/*float current_yaw = fpsCamera.GetYawAngle();
+//    float current_pitch = fpsCamera.GetPitchAngle();
+//
+//	if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
+//	{
+//		current_yaw -= (static_cast<float>(cursor_pos_x) - lastMousePos.x) * MOUSE_SENSITIVITY;
+//		current_pitch += (static_cast<float>(cursor_pos_y) - lastMousePos.y) * MOUSE_SENSITIVITY;
+//	}
+//
+//	lastMousePos.x = static_cast<float>(cursor_pos_x);
+//	lastMousePos.y = static_cast<float>(cursor_pos_y);
+//
+//	fpsCamera.Rotate(current_yaw, current_pitch);*/
+//	
+//
+//}
 
 inline void MouseInputScrollCallback(GLFWwindow* window, double x, double y)
 {
-	auto radius = orbitCamera.GetRadius(); 
+	auto radius = fpsCamera.GetRadius(); 
 	radius += y * MOUSE_SENSITIVITY;
 
-	orbitCamera.SetRadius(radius);
-	orbitCamera.UpdatePosition();
+	fpsCamera.SetRadius(radius);
+
+	float current_yaw = fpsCamera.GetYawAngle();
+	float current_pitch = fpsCamera.GetPitchAngle();
+	fpsCamera.Rotate(current_yaw, current_pitch);
+	
 }
+
+//inline void KeyInputCallback(GLFWwindow * window, int key, int scanCode, int action, int mods)
+//{
+//	
+//}
+//
