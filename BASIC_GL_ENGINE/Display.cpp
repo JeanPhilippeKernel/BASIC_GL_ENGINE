@@ -66,7 +66,6 @@ bool Display::IsClosed()
 void Display::Update()
 {
 	FramePerSecondCounter();
-	
 	glfwPollEvents();
 	glfwSwapBuffers(this->m_window);
 }
@@ -147,6 +146,7 @@ void Display::INITIALIZE_WINDOW()
 	}
 
 	glewExperimental = true;
+
 }
 
 void Display::FramePerSecondCounter()
@@ -158,7 +158,7 @@ void Display::FramePerSecondCounter()
 	static int frameCounter = 0;
 
 	elapsedSecond = currentSecond - previousSecond;
-	if (elapsedSecond > 1)
+	if (elapsedSecond >= 1.0)
 	{
 		previousSecond = currentSecond;
 		double fps = frameCounter / elapsedSecond;
