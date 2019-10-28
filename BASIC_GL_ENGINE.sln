@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BASIC_GL_ENGINE", "BASIC_GL
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OBJ_LOADER", "OBJ_LOADER\OBJ_LOADER.vcxproj", "{2F883912-9F7F-4173-9D58-134C2EBF6F96}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PRATICE_GL", "PRATICE_GL\PRATICE_GL.vcxproj", "{8F8E2EB4-C452-4678-BA58-74AE81883531}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{2F883912-9F7F-4173-9D58-134C2EBF6F96}.Release|x64.Build.0 = Release|x64
 		{2F883912-9F7F-4173-9D58-134C2EBF6F96}.Release|x86.ActiveCfg = Release|Win32
 		{2F883912-9F7F-4173-9D58-134C2EBF6F96}.Release|x86.Build.0 = Release|Win32
+		{8F8E2EB4-C452-4678-BA58-74AE81883531}.Debug|x64.ActiveCfg = Debug|x64
+		{8F8E2EB4-C452-4678-BA58-74AE81883531}.Debug|x64.Build.0 = Debug|x64
+		{8F8E2EB4-C452-4678-BA58-74AE81883531}.Debug|x86.ActiveCfg = Debug|Win32
+		{8F8E2EB4-C452-4678-BA58-74AE81883531}.Debug|x86.Build.0 = Debug|Win32
+		{8F8E2EB4-C452-4678-BA58-74AE81883531}.Release|x64.ActiveCfg = Release|x64
+		{8F8E2EB4-C452-4678-BA58-74AE81883531}.Release|x64.Build.0 = Release|x64
+		{8F8E2EB4-C452-4678-BA58-74AE81883531}.Release|x86.ActiveCfg = Release|Win32
+		{8F8E2EB4-C452-4678-BA58-74AE81883531}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
