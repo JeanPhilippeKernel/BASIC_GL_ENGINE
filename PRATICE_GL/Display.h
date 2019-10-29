@@ -3,6 +3,7 @@
 #include <GLFW/glfw3.h>
 #include <string>
 
+#include <iostream>
 					
 class Display
 {
@@ -24,6 +25,7 @@ public:
 	{
 		if (!title.empty())
 			m_title = title;
+		
 	}
 
 	void SetHeight(int height)
@@ -41,8 +43,7 @@ public:
 
 private:
 	Display();
-	//Display(const Display& display);
-	
+
 	int m_height, m_width;
 	std::string m_title;
 	double m_elpasedTime;
