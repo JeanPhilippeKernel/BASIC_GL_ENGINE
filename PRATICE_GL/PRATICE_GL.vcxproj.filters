@@ -3,8 +3,23 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Display.cpp" />
+    <ClCompile Include="ShaderProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h" />
+    <ClInclude Include="ShaderProgram.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{f6255b96-ca29-4e74-af65-d84b5e688e58}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="basic_vertex.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="basic_fragment.frag">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

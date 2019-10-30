@@ -4,11 +4,13 @@
 #include <string>
 
 #include <iostream>
+#include <sstream>
+#include <functional>
 					
 class Display
 {
 public:
-	explicit Display(int width, int height, std::string title);
+	explicit Display(int width, int height, std::string title, bool vsync = false);
 	~Display();
 
 	bool IsClosed() const;
@@ -18,35 +20,33 @@ public:
 	int GetHeight() const { return m_height; }
 	int GetWidth() const { return m_width; }
 	const std::string& GetTitle() const { return m_title; }
+	double GetElapsedTime() const { return m_elapsedTime; }
+	bool IsVSyncEnabledr() const { return m_isVSyncEnabled; }
+
 	GLFWwindow const * GetCurrentWindow() const { return m_window; }
 
 
-	void SetTitle(const std::string& title) 
-	{
-		if (!title.empty())
-			m_title = title;
-		
-	}
+	void SetTitle(const std::string& title);
+	void SetWidth(int width);
+	void SetHeight(int height);
 
-	void SetHeight(int height)
-	{
-		if (height < 600) return;
-		m_height = height;
-	}
+	void EnableVSync(bool vsync);
 
-	void SetWidth(int width) 
-	{
-		if (width < 800) return;
-		m_width = width;
-	}
 
+	void ClearColor(float r, float g, float b, float a);
+	void EnableDepthTesting();
 
 private:
 	Display();
 
 	int m_height, m_width;
 	std::string m_title;
-	double m_elpasedTime;
+
+	static double m_lastTime;
+	static float m_elapsedTime;
+	static int m_frameCount;
+
+	bool m_isVSyncEnabled;
 
 	GLFWwindow * m_window;
 
@@ -55,5 +55,7 @@ private:
 	void INITIALIZE_WINDOW();
 
 	void PROCESSING_FPS();
+
+	void UPDATE_WINDOW_PROPERTIES();
 };
 

@@ -129,9 +129,15 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Display.cpp" />
+    <ClCompile Include="ShaderProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h" />
+    <ClInclude Include="ShaderProgram.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="basic_fragment.frag" />
+    <None Include="basic_vertex.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
