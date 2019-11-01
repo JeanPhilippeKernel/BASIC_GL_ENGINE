@@ -6,6 +6,7 @@ Vertex::Vertex(Vector3f const position, Vector3f const color, Vector2f const tex
 {
 }
 
+
 Vertex::~Vertex()
 {
 }
