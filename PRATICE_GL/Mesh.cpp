@@ -12,6 +12,10 @@ Mesh::Mesh(std::vector<Vertex> vertices)
 			m_raw_vertices.push_back(v.Get_Position().Get_X());
 			m_raw_vertices.push_back(v.Get_Position().Get_Y());
 			m_raw_vertices.push_back(v.Get_Position().Get_Z());
+
+			m_raw_vertices.push_back(v.Get_Color().Get_X());
+			m_raw_vertices.push_back(v.Get_Color().Get_Y());
+			m_raw_vertices.push_back(v.Get_Color().Get_Z());
 		});
 
 
@@ -33,6 +37,13 @@ Mesh::Mesh(std::vector<Vertex> vertices)
 	glBindVertexArray(0);
 }
 
+Mesh::Mesh(const char * texture_filename, std::vector<Vertex> vertices)
+	:Mesh(vertices)
+{
+	m_texture = {};
+	m_texture.Load(texture_filename);
+}
+
 
 Mesh::Mesh(std::string obj_file)
 	:m_VAO(0), m_VBO(0), m_EBO(0)
@@ -46,8 +57,12 @@ Mesh::~Mesh()
 }
 
 void Mesh::Draw()
-{
+{										   
 	glBindVertexArray(m_VAO);
+	
+	m_texture.Bind();
 	glDrawArrays(GL_TRIANGLES, 0, m_raw_vertices.size());
+	m_texture.Unbind();
+
 	glBindVertexArray(0);
 }

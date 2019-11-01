@@ -8,6 +8,8 @@
     <ClCompile Include="Vector3f.cpp" />
     <ClCompile Include="Vector2f.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Texture2D.cpp" />
+    <ClCompile Include="Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h" />
@@ -16,6 +18,8 @@
     <ClInclude Include="Vector3f.h" />
     <ClInclude Include="Vector2f.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Texture2D.h" />
+    <ClInclude Include="Camera.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="basic_fragment.frag" />

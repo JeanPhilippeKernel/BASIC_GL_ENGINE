@@ -65,7 +65,7 @@ void ShaderProgram::Compile()
 	GLint fs_length = std::strlen(fs_source);
 
 	glShaderSource(m_vertex_shader_handler, 1, &vs_source, &vs_length);
-	glShaderSource(m_vertex_shader_handler, 1, &fs_source, &fs_length);
+	glShaderSource(m_fragment_shader_handler, 1, &fs_source, &fs_length);
 
 	glCompileShader(m_vertex_shader_handler);
 	// info log of compilation...
