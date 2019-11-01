@@ -1,0 +1,13 @@
+#
+# Wavefront material file: robot.mtl
+#
+
+newmtl robot_material
+	Ns 3
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0 0 0
+	Ka 0.588 0.588 0.588
+	map_Kd robot_diffuse.jpg
+

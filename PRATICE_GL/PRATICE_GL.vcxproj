@@ -131,9 +131,9 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="ObjParser.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="Texture2D.cpp" />
-    <ClCompile Include="Vector2f.cpp" />
     <ClCompile Include="Vector3f.cpp" />
     <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
@@ -141,6 +141,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="ObjParser.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Vector2f.h" />
@@ -150,6 +151,9 @@
   <ItemGroup>
     <None Include="basic_fragment.frag" />
     <None Include="basic_vertex.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Material\box.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

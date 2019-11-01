@@ -1,0 +1,25 @@
+#
+# Wavefront material file: H:\OpenGL GI Tutorials\Introduction to Modern OpenGL Series\Tutorial code - Dev\Video_9-Load OBJ\floor.mtl
+#
+# Converted by the PolyTrans geometry converter from Okino Computer Graphics, Inc.
+# Date/time of export: 06/07/2016 09:19:49
+#
+# Bounding box of geometry = (-5,-0.0171537,-5) to (5,-0.0171537,5).
+
+newmtl default
+	Ns 32
+	d 1
+	illum 2
+	Kd 0.4 0.4 0.4
+	Ks 0.7 0.7 0.7
+	Ka 0.3 0.3 0.3
+
+newmtl Material__28
+	Ns 3
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0 0 0
+	Ka 0.588 0.588 0.588
+	map_Kd floor_tile_006a_reflect.jpg
+

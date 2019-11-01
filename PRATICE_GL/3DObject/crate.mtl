@@ -1,0 +1,13 @@
+#
+# Wavefront material file: Crate.mtl
+#
+
+newmtl _Crate1Material
+	Ns 167
+	d 1
+	illum 2
+	Kd 0.64 0.64 0.64
+	Ks 0.5 0.5 0.5
+	Ka 1 1 1
+	map_Kd crate.jpg
+

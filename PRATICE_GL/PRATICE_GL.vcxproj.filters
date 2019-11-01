@@ -6,10 +6,10 @@
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="Vector3f.cpp" />
-    <ClCompile Include="Vector2f.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="ObjParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h" />
@@ -20,9 +20,13 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="ObjParser.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="basic_fragment.frag" />
     <None Include="basic_vertex.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Material\box.png" />
   </ItemGroup>
 </Project>

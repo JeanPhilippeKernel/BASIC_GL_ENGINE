@@ -5,16 +5,30 @@
 #include <sstream>
 
 #include <GL/glew.h>
+#include <glm/glm.hpp>
 
 class ShaderProgram
 {
 public:
-	explicit ShaderProgram(std::string vertexFilename, std::string fragmentFilename);
+	explicit ShaderProgram(const char * vertexFilename, const char * fragmentFilename);
 	~ShaderProgram();
 
 	void UseProgram();
 
 	GLuint GetProgram() const;
+
+
+	void SetUniform(const char* location, int value);
+	void SetUniform(const char* location, float value);
+	
+	void SetUniform(const char* location, glm::vec2 value);
+	void SetUniform(const char* location, glm::vec3 value);
+	void SetUniform(const char* location, glm::vec4 value);
+	
+	void SetUniform(const char* location, glm::mat2 value);
+	void SetUniform(const char* location, glm::mat3 value);
+	void SetUniform(const char* location, glm::mat4 value);
+
 
 
 private:
@@ -25,6 +39,8 @@ private:
 	std::string m_fragment_shader_source;
 
 	GLuint m_program_handler;
+
+
 
 	void Compile();
 	void LinkingAndAssemble();

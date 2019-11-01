@@ -89,7 +89,7 @@ void Display::ClearColor(float r, float g, float b, float a)
 
 void Display::EnableDepthTesting()
 {
-	glClearDepth(GL_DEPTH_BUFFER_BIT);
+	glClear(GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
 }
 

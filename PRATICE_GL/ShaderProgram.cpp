@@ -1,6 +1,6 @@
 #include "ShaderProgram.h"
 
-ShaderProgram::ShaderProgram(std::string vertexFilename, std::string fragmentFilename)
+ShaderProgram::ShaderProgram(const char * vertexFilename, const char * fragmentFilename)
 	
 {
 	std::fstream vertex_stream, fragment_stream;
@@ -51,6 +51,38 @@ void ShaderProgram::UseProgram()
 GLuint ShaderProgram::GetProgram() const
 {
 	return m_program_handler;
+}
+
+void ShaderProgram::SetUniform(const char * location, int value)
+{
+}
+
+void ShaderProgram::SetUniform(const char * location, float value)
+{
+}
+
+void ShaderProgram::SetUniform(const char * location, glm::vec2 value)
+{
+}
+
+void ShaderProgram::SetUniform(const char * location, glm::vec3 value)
+{
+}
+
+void ShaderProgram::SetUniform(const char * location, glm::vec4 value)
+{
+}
+
+void ShaderProgram::SetUniform(const char * location, glm::mat2 value)
+{
+}
+
+void ShaderProgram::SetUniform(const char * location, glm::mat3 value)
+{
+}
+
+void ShaderProgram::SetUniform(const char * location, glm::mat4 value)
+{
 }
 
 void ShaderProgram::Compile()

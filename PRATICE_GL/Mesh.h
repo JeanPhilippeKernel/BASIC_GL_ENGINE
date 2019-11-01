@@ -13,7 +13,7 @@ class Mesh
 public:
 	explicit Mesh(std::vector<Vertex> vertices);
 	explicit Mesh(const char * texture_filename, std::vector<Vertex> vertices);
-	explicit Mesh(std::string obj_file);
+	explicit Mesh(const char * obj_file);
 
 
 	virtual ~Mesh();
