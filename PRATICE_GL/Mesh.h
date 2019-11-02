@@ -7,6 +7,8 @@
 #include "Vertex.h"
 #include "Texture2D.h"
 
+#include "ObjParser.h"
+
 
 class Mesh
 {

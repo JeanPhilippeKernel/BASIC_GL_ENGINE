@@ -25,8 +25,22 @@
   <ItemGroup>
     <None Include="basic_fragment.frag" />
     <None Include="basic_vertex.vert" />
+    <None Include="3DObject\crate.mtl" />
+    <None Include="3DObject\floor.mtl" />
+    <None Include="3DObject\robot.mtl" />
+    <None Include="3DObject\woodcrate.mtl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Material\box.png" />
+    <Image Include="Material\crate.jpg" />
+    <Image Include="Material\robot_diffuse.jpg" />
+    <Image Include="Material\tile_floor.jpg" />
+    <Image Include="Material\woodcrate_diffuse.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="3DObject\crate.obj" />
+    <Object Include="3DObject\floor.obj" />
+    <Object Include="3DObject\robot.obj" />
+    <Object Include="3DObject\woodcrate.obj" />
   </ItemGroup>
 </Project>

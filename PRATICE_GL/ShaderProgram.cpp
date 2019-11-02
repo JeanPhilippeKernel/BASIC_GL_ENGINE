@@ -56,36 +56,71 @@ GLuint ShaderProgram::GetProgram() const
 	return m_program_handler;
 }
 
+GLint ShaderProgram::GetUniformLocation(const char * uniform_name)
+{
+	GLint output;
+	auto find = m_location_container.find(uniform_name);
+	if (find == m_location_container.end())
+	{
+		output = glGetUniformLocation(m_program_handler, uniform_name);
+		if (output != -1)
+			m_location_container[uniform_name] = output;
+	}
+	else
+	{
+		output = find->second;
+	}
+
+	return output;
+}
+
+
 void ShaderProgram::SetUniform(const char * location, int value)
 {
+	auto  l = GetUniformLocation(location);
+	glUniform1i(l, value);
 }
 
 void ShaderProgram::SetUniform(const char * location, float value)
 {
+	auto  l = GetUniformLocation(location);
+	glUniform1f(l, value);
 }
 
 void ShaderProgram::SetUniform(const char * location, glm::vec2 value)
 {
+	auto  l = GetUniformLocation(location);
+	glUniform2f(l, value.x, value.y);
 }
 
 void ShaderProgram::SetUniform(const char * location, glm::vec3 value)
 {
+	auto  l = GetUniformLocation(location);
+	glUniform3f(l, value.x, value.y, value.z);
 }
 
 void ShaderProgram::SetUniform(const char * location, glm::vec4 value)
 {
+	auto  l = GetUniformLocation(location);
+	glUniform4f(l, value.x, value.y, value.z, value.w);
 }
 
 void ShaderProgram::SetUniform(const char * location, glm::mat2 value)
 {
+	auto  l = GetUniformLocation(location);
+	glUniformMatrix2fv(l, 1, GL_FALSE,  glm::value_ptr(value));
 }
 
 void ShaderProgram::SetUniform(const char * location, glm::mat3 value)
 {
+	auto  l = GetUniformLocation(location);
+	glUniformMatrix3fv(l, 1, GL_FALSE, glm::value_ptr(value));
 }
 
 void ShaderProgram::SetUniform(const char * location, glm::mat4 value)
 {
+	auto  l = GetUniformLocation(location);
+	glUniformMatrix4fv(l, 1, GL_FALSE, glm::value_ptr(value));
 }
 
 void ShaderProgram::Compile()

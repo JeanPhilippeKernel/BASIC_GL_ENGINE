@@ -7,6 +7,9 @@
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 
+#include <glm/gtc/type_ptr.hpp>
+#include <map>
+
 class ShaderProgram
 {
 public:
@@ -40,7 +43,9 @@ private:
 
 	GLuint m_program_handler;
 
-
+	std::map<std::string, GLint>  m_location_container;
+	
+	GLint GetUniformLocation(const char * uniform_name);
 
 	void Compile();
 	void LinkingAndAssemble();

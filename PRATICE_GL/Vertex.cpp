@@ -16,4 +16,8 @@ Vertex::Vertex(Vector3f position, Vector3f color, Vector2f texture)
 	:m_position(position), m_color(color), m_texture(texture)
 {
 }
-											 
+						
+Vertex::Vertex(Vector3f position, Vector3f color, Vector3f texture)
+	:m_position(position), m_color(color), m_texture(texture.m_x, texture.m_y)
+{
+}

@@ -11,6 +11,7 @@ public:
 	Vertex(float pos_x, float pos_y, float pos_z, float r, float g, float b, float a);
 	Vertex(Vector3f position, Vector3f color);
 	Vertex(Vector3f position, Vector3f color, Vector2f texture);
+	Vertex(Vector3f position, Vector3f color, Vector3f texture);
 	
 	~Vertex() = default;
 
