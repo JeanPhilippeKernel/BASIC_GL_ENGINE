@@ -4,7 +4,7 @@
 #include "Mesh.h"
 
 
-Display display(1000, 800, "GL ENGINE", true);
+Display display(1000, 800, "GL ENGINE", false);
 
 ShaderProgram shader("basic_vertex.vert", "basic_fragment.frag");
 

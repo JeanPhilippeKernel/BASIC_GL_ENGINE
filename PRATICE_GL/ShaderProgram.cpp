@@ -28,6 +28,9 @@ ShaderProgram::ShaderProgram(const char * vertexFilename, const char * fragmentF
 
 		glDeleteShader(m_vertex_shader_handler);
 		glDeleteShader(m_fragment_shader_handler);
+
+		vertex_stream.close();
+		fragment_stream.close();
 	}
 	catch (const std::exception&)
 	{
