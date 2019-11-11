@@ -25,16 +25,15 @@ ShaderProgram::ShaderProgram(const char * vertexFilename, const char * fragmentF
 		LinkingAndAssemble();
 		Validate();
 
-
 		glDeleteShader(m_vertex_shader_handler);
 		glDeleteShader(m_fragment_shader_handler);
 
 		vertex_stream.close();
 		fragment_stream.close();
 	}
-	catch (const std::exception&)
+	catch (const std::ios::failure& e)
 	{
-		std::cerr << "unable to open shader files..." << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
 }
@@ -67,9 +66,7 @@ GLint ShaderProgram::GetUniformLocation(const char * uniform_name)
 			m_location_container[uniform_name] = output;
 	}
 	else
-	{
 		output = find->second;
-	}
 
 	return output;
 }

@@ -81,7 +81,7 @@ ObjParser::~ObjParser()
 {
 }
 
-const std::vector<Vertex>& ObjParser::To_Vertices() const
+const std::vector<Vertex>& ObjParser::ToVertices() const
 {
 	return m_vertices;
 }

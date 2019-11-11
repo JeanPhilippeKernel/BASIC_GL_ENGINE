@@ -54,7 +54,7 @@ Mesh::Mesh(const char *  obj_file)
 	:m_VAO(0), m_VBO(0), m_EBO(0)
 {
 	ObjParser obj_parser(obj_file);
-	auto vertices = obj_parser.To_Vertices();
+	auto vertices = obj_parser.ToVertices();
 
 	std::for_each(vertices.begin(), vertices.end(),
 		[this](const Vertex& v)
@@ -107,7 +107,7 @@ void Mesh::Draw()
 	glBindVertexArray(m_VAO);
 	
 	m_texture.Bind();
-	glDrawArrays(GL_TRIANGLES, 0, m_raw_vertices.size());
+	glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(m_raw_vertices.size()));
 	m_texture.Unbind();
 
 	glBindVertexArray(0);

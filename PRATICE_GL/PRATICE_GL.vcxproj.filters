@@ -10,6 +10,7 @@
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ObjParser.cpp" />
+    <ClCompile Include="OrbitCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h" />
@@ -21,6 +22,7 @@
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ObjParser.h" />
+    <ClInclude Include="OrbitCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="basic_fragment.frag" />

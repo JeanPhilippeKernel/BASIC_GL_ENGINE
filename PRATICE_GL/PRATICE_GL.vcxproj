@@ -132,6 +132,7 @@
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="ObjParser.cpp" />
+    <ClCompile Include="OrbitCamera.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="Vector3f.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="Display.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="ObjParser.h" />
+    <ClInclude Include="OrbitCamera.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Vector2f.h" />

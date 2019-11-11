@@ -15,7 +15,7 @@ public:
 	explicit ObjParser(const char * filename);
 	~ObjParser();
 
-	const std::vector<Vertex>& To_Vertices() const;
+	const std::vector<Vertex>& ToVertices() const;
 
 
 private:
