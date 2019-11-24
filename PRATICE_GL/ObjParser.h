@@ -15,10 +15,12 @@ public:
 	explicit ObjParser(const char * filename);
 	~ObjParser();
 
-	const std::vector<Vertex>& ToVertices() const;
+	 const std::vector<Vertex>& ToVertices() const;
 
 
 private:
+	ObjParser(const ObjParser&);
+
 	std::vector<Vector3f> m_positions;
 	std::vector<Vector3f> m_textures;
 	std::vector<Vector3f> m_normals;

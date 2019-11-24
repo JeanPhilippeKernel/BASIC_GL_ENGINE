@@ -8,8 +8,8 @@
 Texture2D::Texture2D()
 {
 	glGenTextures(1, &m_texture_handler);
-	glBindTexture(GL_TEXTURE_2D, m_texture_handler);
-	glBindTexture(GL_TEXTURE_2D, 0);
+	//glBindTexture(GL_TEXTURE_2D, m_texture_handler);
+	//glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 
@@ -37,10 +37,10 @@ void Texture2D::Load(const char * filename)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, reinterpret_cast<void *>(data));
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, (GLvoid *)data);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	stbi_image_free(data);
@@ -49,7 +49,7 @@ void Texture2D::Load(const char * filename)
 void Texture2D::Bind(int texture_unit)
 {
 	glActiveTexture(GL_TEXTURE0 + texture_unit);
-	glBindTexture(GL_TEXTURE_2D, m_texture_handler);
+	glBindTexture(GL_TEXTURE_2D, this->m_texture_handler);
 }
 
 void Texture2D::Unbind(int texture_unit)

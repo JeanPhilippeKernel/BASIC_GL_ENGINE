@@ -11,7 +11,9 @@ public:
 
 	float Get_Yaw_Angle() const { return m_yaw_angle; }
 	float Get_Pitch_Angle() const { return m_pitch_angle; }
+	float Get_Radius() const { return m_radius; }
 
+	void Set_Radius(float radius) { m_radius = radius; }
 	void Set_Yaw_Angle(float angle) { m_yaw_angle = glm::radians(angle); }
 	void Set_Pitch_Angle(float angle) { m_pitch_angle = glm::clamp(glm::radians(angle), -glm::half_pi<float>() + 1.0f, glm::half_pi<float>() - 1.0f); }
 

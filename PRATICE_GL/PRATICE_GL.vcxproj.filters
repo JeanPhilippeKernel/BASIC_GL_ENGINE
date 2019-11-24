@@ -38,11 +38,13 @@
     <Image Include="Material\robot_diffuse.jpg" />
     <Image Include="Material\tile_floor.jpg" />
     <Image Include="Material\woodcrate_diffuse.jpg" />
+    <Image Include="Material\d.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Object Include="3DObject\crate.obj" />
     <Object Include="3DObject\floor.obj" />
     <Object Include="3DObject\robot.obj" />
     <Object Include="3DObject\woodcrate.obj" />
+    <Object Include="3DObject\Catapult.obj" />
   </ItemGroup>
 </Project>

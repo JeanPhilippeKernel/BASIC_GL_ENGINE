@@ -164,7 +164,7 @@ int main(int argc, char* argv[])
 		cube_mesh.Draw();
 
 		texture.UnBind();
-		texture.UnBind(1);
+		texture_two.UnBind(1);
 
 
 		texture_three.Bind();
@@ -172,8 +172,8 @@ int main(int argc, char* argv[])
 		shader.SetUniform("model_matrix", model_matrix_two);
 		floor.Draw();
 
-		texture.UnBind();
-		texture.UnBind(1);
+		texture_three.UnBind();
+		texture_three.UnBind(1);
 
 		float deltaTime = currentTime - lastime;
 		Update(deltaTime);

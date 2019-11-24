@@ -42,18 +42,16 @@ Mesh::Mesh(std::vector<Vertex> vertices)
 	glBindVertexArray(0);
 }
 
-Mesh::Mesh(const char * texture_filename, std::vector<Vertex> vertices)
-	:Mesh(vertices)
+
+Mesh::~Mesh()
 {
-	m_texture = {};
-	m_texture.Load(texture_filename);
+	glDeleteVertexArrays(1, &(this->m_VAO));
+	glDeleteBuffers(1, &(this->m_VBO));
 }
 
-
-Mesh::Mesh(const char *  obj_file)
-	:m_VAO(0), m_VBO(0), m_EBO(0)
+void Mesh::LoadOBJFile(const char * filename)
 {
-	ObjParser obj_parser(obj_file);
+	ObjParser obj_parser(filename);
 	auto vertices = obj_parser.ToVertices();
 
 	std::for_each(vertices.begin(), vertices.end(),
@@ -72,43 +70,29 @@ Mesh::Mesh(const char *  obj_file)
 		});
 
 
-
-	glGenVertexArrays(1, &m_VAO);
+	glGenVertexArrays(1, &(this->m_VAO));
 	glBindVertexArray(this->m_VAO);
 
-	glGenBuffers(1, &m_VBO);
+	glGenBuffers(1, &(this->m_VBO));
 	glBindBuffer(GL_ARRAY_BUFFER, this->m_VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * this->m_raw_vertices.size(), this->m_raw_vertices.data(), GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, (8 * sizeof(float)), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, (8 * sizeof(float)), (GLvoid*)0);
 
 	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, (8 * sizeof(float)), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, (8 * sizeof(float)), (GLvoid*)(3 * sizeof(float)));
 
 	glEnableVertexAttribArray(2);
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, (8 * sizeof(float)), (void*)(6 * sizeof(float)));
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, (8 * sizeof(float)), (GLvoid*)(6 * sizeof(float)));
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
-
-	m_texture = {};
-	m_texture.Load("Material/robot_diffuse.jpg");
-}
-
-Mesh::~Mesh()
-{
-	glDeleteVertexArrays(1, &m_VAO);
-	glDeleteBuffers(1, &m_VBO);
 }
 
 void Mesh::Draw()
 {										   
-	glBindVertexArray(m_VAO);
-	
-	m_texture.Bind();
-	glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(m_raw_vertices.size()));
-	m_texture.Unbind();
-
+	glBindVertexArray(this->m_VAO);
+	glDrawArrays(GL_TRIANGLES, 0, m_raw_vertices.size());
 	glBindVertexArray(0);
 }

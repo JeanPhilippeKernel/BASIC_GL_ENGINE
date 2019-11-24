@@ -45,7 +45,12 @@ ObjParser::ObjParser(const char* filename)
 						pos_three, tex_three, norm_three;
 
 					std::stringstream ss(line.substr(2));
-					sscanf_s(ss.rdbuf()->str().c_str(), "%d/%d/%d %d/%d/%d %d/%d/%d", &pos_one, &tex_one, &norm_one, &pos_two, &tex_two, &norm_two, &pos_three, &tex_three, &norm_three);
+					sscanf_s(
+						ss.rdbuf()->str().c_str(), 
+						"%d/%d/%d %d/%d/%d %d/%d/%d", 
+						&pos_one, &tex_one, &norm_one, &pos_two, 
+						&tex_two, &norm_two, &pos_three, 
+						&tex_three, &norm_three);
 
 					m_vertices.push_back({
 						m_positions.at(pos_one -1),

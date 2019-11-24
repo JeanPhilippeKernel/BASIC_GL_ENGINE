@@ -5,30 +5,27 @@
 #include <algorithm>
 
 #include "Vertex.h"
-#include "Texture2D.h"
 
 #include "ObjParser.h"
-
 
 class Mesh
 {
 public:
+	Mesh() = default;
 	explicit Mesh(std::vector<Vertex> vertices);
-	explicit Mesh(const char * texture_filename, std::vector<Vertex> vertices);
-	explicit Mesh(const char * obj_file);
-
-
+	
 	virtual ~Mesh();
 
+	void LoadOBJFile(const char * filename);
 	void Draw();
 
 private:
-	GLuint m_VAO;
-	GLuint m_VBO;
-	GLuint m_EBO;
+	Mesh(const Mesh&);
+	
+	GLuint m_VAO{ 0 };
+	GLuint m_VBO{ 0 };
+	GLuint m_EBO{ 0 };
 
 	std::vector<float> m_raw_vertices;
-
-	Texture2D m_texture;
 };
 
