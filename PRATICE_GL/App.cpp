@@ -10,7 +10,6 @@
 
 Display display(1000, 800, "GL ENGINE", true);
 OrbitCamera orbitCamera(glm::vec3(0, 0, 20), glm::vec3(.0f, 0.0f, .0f), 90.0f, 90.f);
-
 ShaderProgram shader("basic_vertex.vert", "basic_fragment.frag");
 
 
@@ -25,6 +24,7 @@ glm::mat4 projection = glm::perspective(
 	static_cast<float>(display.GetWidth() / display.GetHeight()), 
 	1.0f, 100.0f
 );
+
 
 glm::mat4 view = orbitCamera.ToMatrix();
 
