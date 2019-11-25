@@ -26,9 +26,8 @@ This project has been configured to use the Vcpkg package manager, which provide
 All packages can be installed from [Vcpkg](https://docs.microsoft.com/en-us/cpp/build/vcpkg?view=vs-2019).
 This link show how to build and setup [Vcpkg](https://docs.microsoft.com/en-us/cpp/build/vcpkg?view=vs-2019#installation) on Windows.
 
-As I use static-linking for all above dependencies, you can install packages for x86 or x64 or both 
-if you would like to have both.
-Here is  commands for these  architectures
+As I use static-linking for all above dependencies, you can install packages for x86 or x64 .
+Commands to run :
 ## x86
 `vcpkg install glfw:x86-windows-static`
 `vcpkg install glew:x86-windows-static`
