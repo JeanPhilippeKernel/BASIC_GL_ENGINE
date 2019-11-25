@@ -19,7 +19,7 @@ The project is recent, it is currently developed and runnable under Windows.
 ## Dependancies
 As this project is mainly developed in C++, I use [GLFW](https://github.com/glfw/glfw) for window creation and user input management,
 [GLM](https://glm.g-truc.net/0.9.9/index.html) for functions and mathematical calculations,
-GLEW for openGL functions and [STB_Image](https://github.com/nothings/stb) for loading and manipulating image files for textures.
+[GLEW](http://glew.sourceforge.net/) for openGL functions and [STB_Image](https://github.com/nothings/stb) for loading and manipulating image files for textures.
 
 ## Building
 This project has been configured to use the Vcpkg package manager, which provides a flexibility to update them.
@@ -40,3 +40,17 @@ Commands to run :
 `vcpkg install glew:x64-windows-static`
 `vcpkg install stb:x64-windows-static`
 `vcpkg install glm:x64-windows-static`
+
+
+# Features
+This project is very recent, it is subject of enormous future changes as well as the appearance of new functionalities,
+change / improvement of software architecture.
+However some basic features are already available and some are coming soon:
+[+] Orbit Camera with user interation
+[+] OBJ file loader
+[+] FPS Camera with user interaction (soon)
+[+] Ligthing system (soon)
+[+] UI system (soon)
+[+] Layer stack management (soon)
+[+] implement decent multiple object loading (soon)
+[+] multithreading support (soon)
