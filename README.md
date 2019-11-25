@@ -55,19 +55,19 @@ This project is very recent, it is subject of enormous future changes as well as
 change / improvement of software architecture.
 However some basic features are already available and some are coming soon:
 
-[+] Orbit Camera with user interation
+**[+] Orbit Camera with user interation**
 
-[+] OBJ file loader
+**[+] OBJ file loader**
 
-[+] FPS Camera with user interaction (soon)
+**[+] FPS Camera with user interaction (soon)**
 
-[+] Ligthing system (soon)
+**[+] Ligthing system (soon)**
 
-[+] UI system (soon)
+**[+] UI system (soon)**
 
-[+] Layer stack management (soon)
+**[+] Layer stack management (soon)**
 
-[+] implement decent multiple object loading (soon)
+**[+] implement decent multiple object loading (soon)**
 
-[+] multithreading support (soon)
+**[+] multithreading support (soon)**
 
