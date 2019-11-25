@@ -13,6 +13,10 @@ OrbitCamera orbitCamera(glm::vec3(0, 0, 20), glm::vec3(.0f, 0.0f, .0f), 90.0f, 9
 ShaderProgram shader("basic_vertex.vert", "basic_fragment.frag");
 
 
+//display callback function
+void DisplayCursorPosCallback(GLFWwindow * window, double offset_x, double offset_y);
+void MouseWheelScrollCallback(GLFWwindow * window, double offset_x, double offset_y);
+
 std::array <glm::mat4, 3> modelArray = {
 		glm::translate(glm::mat4(1.0f), glm::vec3(-2.5, 0, 0)) * glm::scale(glm::vec3(1.5f)),
 		glm::translate(glm::mat4(1.0f), glm::vec3(4, 1.5, 0)) * glm::scale(glm::vec3(1.5f)),
@@ -25,19 +29,19 @@ glm::mat4 projection = glm::perspective(
 	1.0f, 100.0f
 );
 
-
 glm::mat4 view = orbitCamera.ToMatrix();
 
 
-//display callback function
-void DisplayCursorPosCallback(GLFWwindow * window, double offset_x, double offset_y);
-void MouseWheelScrollCallback(GLFWwindow * window, double offset_x, double offset_y);
+std::array<Mesh, 3> meshs;
+std::array<Texture2D, 3> textures;
+
+std::array<const char *, 3> meshFile;
+std::array<const char *, 3> textureFile;
 
 int main(int argc, char** argv)
 {
-
-	std::array<const char *, 3> meshFile;
-	std::array<const char *, 3> textureFile;
+	glfwSetCursorPosCallback(const_cast<GLFWwindow *>(display.GetCurrentWindow()), DisplayCursorPosCallback);
+	glfwSetScrollCallback(const_cast<GLFWwindow *>(display.GetCurrentWindow()), MouseWheelScrollCallback);
 
 	meshFile[0] = "3DObject/robot.obj";
 	meshFile[1] = "3DObject/woodcrate.obj";
@@ -48,27 +52,13 @@ int main(int argc, char** argv)
 	textureFile[2] = "Material/tile_floor.jpg";
 
 
-	glfwSetCursorPosCallback(const_cast<GLFWwindow *>(display.GetCurrentWindow()), DisplayCursorPosCallback);
-	glfwSetScrollCallback(const_cast<GLFWwindow *>(display.GetCurrentWindow()), MouseWheelScrollCallback);
-
-	Mesh mesh_one;
-	Mesh mesh_two;
-	Mesh mesh_three;
-	
-	Texture2D texture_one;
-	Texture2D texture_two;
-	Texture2D texture_three;
-
-	mesh_one.LoadOBJFile(meshFile[0]);
-	mesh_two.LoadOBJFile(meshFile[1]);
-	mesh_three.LoadOBJFile(meshFile[2]);
-
-	texture_one.Load(textureFile[0]);
-	texture_two.Load(textureFile[1]);
-	texture_three.Load(textureFile[2]);
+	for (int x = 0; x < meshs.size(); ++x)
+	{
+		meshs[x].LoadOBJFile(meshFile[x]);
+		textures[x].Load(textureFile[x]);
+	}
 
 
-	
 	while (!display.IsClosed())
 	{
 		display.ClearColor(.3f, .5f, .6f, 1.0f);
@@ -80,23 +70,15 @@ int main(int argc, char** argv)
 		shader.SetUniform("projection", projection);
 		shader.SetUniform("view", view);
 
-		
-		texture_one.Bind();
-		shader.SetUniform("model", modelArray[0]);
-		mesh_one.Draw();
-		texture_one.Unbind();
+		for (int x = 0; x < meshs.size(); ++x)
+		{
+			textures[x].Bind();
+			shader.SetUniform("model", modelArray[x]);
 
-		texture_two.Bind();
-		shader.SetUniform("model", modelArray[1]);
-		mesh_two.Draw();
-		texture_two.Unbind();
+			meshs[x].Draw();
+			textures[x].Unbind();
+		}
 
-		texture_three.Bind();
-		shader.SetUniform("model", modelArray[2]);
-		mesh_three.Draw();
-		texture_three.Unbind();
-
-	
 		display.Update();
 	}	  
 
