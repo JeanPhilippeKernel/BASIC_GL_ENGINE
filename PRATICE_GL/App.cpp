@@ -17,10 +17,11 @@ ShaderProgram shader("basic_vertex.vert", "basic_fragment.frag");
 void DisplayCursorPosCallback(GLFWwindow * window, double offset_x, double offset_y);
 void MouseWheelScrollCallback(GLFWwindow * window, double offset_x, double offset_y);
 
-std::array <glm::mat4, 3> modelArray = {
+std::array <glm::mat4, 4> modelArray = {
 		glm::translate(glm::mat4(1.0f), glm::vec3(-2.5, 0, 0)) * glm::scale(glm::vec3(1.5f)),
 		glm::translate(glm::mat4(1.0f), glm::vec3(4, 1.5, 0)) * glm::scale(glm::vec3(1.5f)),
-		glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)) * glm::scale(glm::vec3(5.f))
+		glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)) * glm::scale(glm::vec3(5.f)),
+		glm::translate(glm::mat4(1.0f), glm::vec3(-8, 1.5, 0)) * glm::scale(glm::vec3(1.5f))
 };
 
 glm::mat4 projection = glm::perspective(
@@ -32,11 +33,11 @@ glm::mat4 projection = glm::perspective(
 glm::mat4 view = orbitCamera.ToMatrix();
 
 
-std::array<Mesh, 3> meshs;
-std::array<Texture2D, 3> textures;
+std::array<Mesh, 4> meshs;
+std::array<Texture2D, 4> textures;
 
-std::array<const char *, 3> meshFile;
-std::array<const char *, 3> textureFile;
+std::array<const char *, 4> meshFile;
+std::array<const char *, 4> textureFile;
 
 int main(int argc, char** argv)
 {
@@ -46,10 +47,12 @@ int main(int argc, char** argv)
 	meshFile[0] = "3DObject/robot.obj";
 	meshFile[1] = "3DObject/woodcrate.obj";
 	meshFile[2] = "3DObject/floor.obj";
+	meshFile[3] = "3DObject/crate.obj";
 
 	textureFile[0] = "Material/robot_diffuse.jpg";
 	textureFile[1] = "Material/woodcrate_diffuse.jpg";
 	textureFile[2] = "Material/tile_floor.jpg";
+	textureFile[3] = "Material/crate.jpg";
 
 
 	for (int x = 0; x < meshs.size(); ++x)
