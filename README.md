@@ -29,16 +29,24 @@ This link show how to build and setup [Vcpkg](https://docs.microsoft.com/en-us/c
 As I use static-linking for all above dependencies, you can install packages for x86 or x64 .
 Commands to run :
 ## x86
+
 `vcpkg install glfw:x86-windows-static`
+
 `vcpkg install glew:x86-windows-static`
+
 `vcpkg install stb:x86-windows-static`
+
 `vcpkg install glm:x86-windows-static`
 
 
 ## x64
+
 `vcpkg install glfw:x64-windows-static`
+
 `vcpkg install glew:x64-windows-static`
+
 `vcpkg install stb:x64-windows-static`
+
 `vcpkg install glm:x64-windows-static`
 
 
@@ -46,11 +54,20 @@ Commands to run :
 This project is very recent, it is subject of enormous future changes as well as the appearance of new functionalities,
 change / improvement of software architecture.
 However some basic features are already available and some are coming soon:
+
 [+] Orbit Camera with user interation
+
 [+] OBJ file loader
+
 [+] FPS Camera with user interaction (soon)
+
 [+] Ligthing system (soon)
+
 [+] UI system (soon)
+
 [+] Layer stack management (soon)
+
 [+] implement decent multiple object loading (soon)
+
 [+] multithreading support (soon)
+
